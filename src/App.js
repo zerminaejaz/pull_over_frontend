@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Form from './Pages/Form';
+import LoginForm from './Pages/LoginForm';
+import { connect } from 'react-redux';
+import Actions from './Redux/actions';
+class App extends Component {
+  componentDidMount() {
+    if (localStorage.token) {
+      this.props.persistUserFromAPI();
+    }
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <h1>{this.props.user ? this.props.user.username : ''}</h1>
+        <Form />
+        <LoginForm />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({ stateObj: state });
+
+const mapDispatchToProps = {
+  persistUserFromAPI: Actions.persistUserFromAPI
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
