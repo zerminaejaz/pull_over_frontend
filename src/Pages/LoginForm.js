@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Actions from './Redux/actions';
+import Actions from '../Redux/actions';
 import { connect } from 'react-redux';
 
 class LoginForm extends Component {
@@ -10,11 +10,16 @@ class LoginForm extends Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
+  handleLogInUserToDb=(e, state)=>{
+    e.preventDefault()
+    this.props.loginUserToDB(state)
+  }
+
   render() {
     return (
       <div>
         <h1> Login</h1>
-        <form onSubmit={e => this.props.loginUserToDB(e, this.state)}>
+        <form onSubmit={e => this.handleLogInUserToDb(e, this.state)}>
           <input
             type="text"
             value={this.state.username}
