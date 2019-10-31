@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Actions from './Redux/actions';
+import { connect } from 'react-redux';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   state = {
     username: '',
     password: ''
@@ -12,7 +14,7 @@ export default class LoginForm extends Component {
     return (
       <div>
         <h1> Login</h1>
-        <form onSubmit={e => this.props.handleSubmit(e, this.state)}>
+        <form onSubmit={e => this.props.loginUserToDB(e, this.state)}>
           <input
             type="text"
             value={this.state.username}
@@ -31,3 +33,10 @@ export default class LoginForm extends Component {
     );
   }
 }
+const mapDispatchToProps = {
+  loginUserToDB: Actions.loginUserToDB
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginForm);
