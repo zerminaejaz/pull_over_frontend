@@ -1,8 +1,3 @@
-// const state = {
-//   posts: {}
-//   user: {}
-// }
-
 export default (state={}, { type, payload }) => {
     switch (type) {
       case 'SET_USER':
@@ -14,10 +9,15 @@ export default (state={}, { type, payload }) => {
           ...state
         }
       case 'HOLD_POSTS':
-  
         return {
           ...state,
           posts: payload,
+          ...state
+        }
+      case "SEND_POST":
+        return {
+          ...state,
+          post: {},
           ...state
         }
         

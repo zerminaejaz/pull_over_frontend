@@ -19,10 +19,15 @@ const logoutUser = () => dispatch => {
   dispatch(clearUserAction())
   localStorage.clear()
   }
+
+const sendPost = post => ({
+  type: "SEND_POST",
+  payload: post
+})
   
 // FETCH
 const getPosts = () => dispatch => {
-  console.log("getPosts/actions")
+  // console.log("getPosts/actions")
     fetch('http://localhost:3000/posts', {
       headers: {
         'Content-Type': 'application/json',
@@ -86,5 +91,6 @@ const getPosts = () => dispatch => {
     loginUserToDB,
     createNewUserToDB,
     logoutUser,
-    getPosts
+    getPosts,
+    sendPost
   };
