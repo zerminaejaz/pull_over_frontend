@@ -17,10 +17,15 @@ export default (state={}, { type, payload }) => {
       case "SEND_POST":
         return {
           ...state,
-          post: {},
+          post: payload,
           ...state
         }
-        
+      case "CLEAR_POST":
+        return {
+          ...state,
+          post: null,
+          ...state
+          }
       default:
         return state;
     }

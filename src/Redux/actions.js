@@ -24,6 +24,11 @@ const sendPost = post => ({
   type: "SEND_POST",
   payload: post
 })
+const clearPost = () => ({
+  type: "CLEAR_POST",
+  payload: null
+})
+
   
 // FETCH
 const getPosts = () => dispatch => {
@@ -92,5 +97,6 @@ const getPosts = () => dispatch => {
     createNewUserToDB,
     logoutUser,
     getPosts,
-    sendPost
+    sendPost,
+    clearPost
   };

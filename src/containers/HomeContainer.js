@@ -14,8 +14,9 @@ class HomeContainer extends Component{
       height: "50vh",
       latitude: 40.700819,
       longitude: -73.987667,
-      zoom: 16
-    }
+      zoom: 10
+    },
+    // selectedPost: null
   };
 
   //get posts
@@ -43,9 +44,18 @@ class HomeContainer extends Component{
     }
   }
 
-  handleClickedPost = (e) => {
-    e.preventDefault()
-    console.log("Event: ", e.target)
+  handleSelectedPost = post => {
+    this.props.sendPost(post)
+      // this.setState({
+      //   selectedPost: post
+      // })
+  }
+
+  onClose = () => {
+    this.props.clearPost()
+    // this.setState({
+    //   selectedPost: null
+    // })
   }
 
   setView = r => {
@@ -60,12 +70,23 @@ class HomeContainer extends Component{
     )
   }
 
+  renderPopUp = () =>{
+    return(<Popup
+      latitude={parseFloat(this.props.post.latitude)}
+      longitude={parseFloat(this.props.post.longitude)}
+      onClose={this.closePopup}>
+      <p>HotSpot Information</p>
+    </Popup>)
+  }
+
   createMarkers = (array) => {
     return(
       array.map(post => {
+        
         return(
-        <Marker key={post.id} longitude={parseFloat(post.longitude, 10)} latitude={parseFloat(post.latitude)}>
-          <button className="marker-btn" onClick={(e)=>{this.handleClickedPost()}}><img src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px"></img></button>
+        <Marker key={post.id} longitude={parseFloat(post.longitude)} latitude={parseFloat(post.latitude)}>
+          <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px"></img>
+          {this.props.post ? this.renderPopUp():null}
         </Marker>
         )
       })
@@ -94,7 +115,8 @@ const mapDispatchToProps = {
     persistUserFromAPI: Actions.persistUserFromAPI,
     logoutUser: Actions.logoutUser,
     getPosts: Actions.getPosts,
-    sendPost: Actions.sendPost
+    sendPost: Actions.sendPost,
+    clearPost: Actions.clearPost
   };
   
   const mapStateToProps = (state)=> {
