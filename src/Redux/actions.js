@@ -6,9 +6,14 @@ const setUserAction = userObj => ({
   });
   
   const clearUserAction = () => ({
-    type: 'CLEAR_USER'
+    type: 'CLEAR_USER',
+    payload: {}
   });
   
+  const logoutUser = () => dispatch => {
+    dispatch(clearUserAction())
+    localStorage.clear()
+  }
   // FETCH
   
   const persistUserFromAPI = () => dispatch => {
@@ -60,5 +65,6 @@ const setUserAction = userObj => ({
   export default {
     persistUserFromAPI,
     loginUserToDB,
-    createNewUserToDB
+    createNewUserToDB,
+    logoutUser
   };

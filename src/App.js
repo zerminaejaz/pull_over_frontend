@@ -3,29 +3,54 @@ import Form from './Pages/Form';
 import LoginForm from './Pages/LoginForm';
 import { connect } from 'react-redux';
 import Actions from './Redux/actions';
+
 class App extends Component {
+  
   componentDidMount() {
     if (localStorage.token) {
       this.props.persistUserFromAPI();
     }
   }
 
+  showLogInSignUpContainer = () => {
+    return (
+      <>
+        <Form />
+        <LoginForm />
+      </>
+    )
+  }
+
+  handleLogOut = () => {
+    console.log("Clicked log out")
+    this.props.logoutUser()
+
+  }
+
+  showHomePage = () => {
+    return(<>
+    <h1>You are logged In!</h1>
+      <button onClick={this.handleLogOut}>Log Out</button></>)
+
+  }
+
   render() {
     return (
       <div>
-        <h1>{this.props.user ? this.props.user.username : ''}</h1>
-        <Form />
-        <LoginForm />
+       {(this.props.user && this.props.user.id) ? this.showHomePage() : this.showLogInSignUpContainer() }
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ stateObj: state });
-
 const mapDispatchToProps = {
-  persistUserFromAPI: Actions.persistUserFromAPI
+  persistUserFromAPI: Actions.persistUserFromAPI,
+  logoutUser: Actions.logoutUser
 };
+
+const mapStateToProps = (state)=> {
+  return {user: state}
+}
 
 export default connect(
   mapStateToProps,

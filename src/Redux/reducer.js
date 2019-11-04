@@ -1,15 +1,19 @@
+// const state = {
+//   user: {}
+// }
 
-export default (state = {}, { type, payload }) => {
+export default (state={}, { type, payload }) => {
     switch (type) {
       case 'SET_USER':
-        console.log('reducer: ', payload);
-        return {
-          ...state,
-          payload
-        };
+        // console.log('reducer: ', payload);
+        return payload
+      
       case 'CLEAR_USER':
-        return {};
+        return {}
+        
       default:
         return state;
     }
   };
+
+  
