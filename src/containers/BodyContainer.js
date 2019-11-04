@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Actions from '../Redux/actions';
 import HomeContainer from './HomeContainer'
 
-
 class BodyContainer extends Component{
 
     render(){
@@ -13,7 +12,6 @@ class BodyContainer extends Component{
             </>
         )
     }
-
 }
 
 const mapDispatchToProps = {

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../../Redux/actions';
-import Post from './Post';
 
-class PopupShow extends Component{
+class Post extends Component{
 
     render(){
         return(
             <>
-            <Post/>
             </>
         )
     }
@@ -26,4 +24,4 @@ const mapDispatchToProps = {
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(PopupShow);
+  )(Post);

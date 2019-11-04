@@ -4,6 +4,7 @@ import LoginForm from './Pages/LoginForm';
 import { connect } from 'react-redux';
 import Actions from './Redux/actions';
 import BodyContainer from './containers/BodyContainer'
+import Navbar from './containers/Navbar';
 
 class App extends Component {
   
@@ -30,10 +31,10 @@ class App extends Component {
 
   showHomePage = () => {
     return(<>
-    {/* <Navbar/> */}
-    <h1>You are logged In!</h1>
-      <button onClick={this.handleLogOut}>Log Out</button>
-      <BodyContainer/>
+      <div className="container is-centered">
+        <Navbar/>
+        <BodyContainer/>  
+      </div>
       </>)
 
   }
