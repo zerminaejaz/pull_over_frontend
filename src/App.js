@@ -3,6 +3,7 @@ import Form from './Pages/Form';
 import LoginForm from './Pages/LoginForm';
 import { connect } from 'react-redux';
 import Actions from './Redux/actions';
+import BodyContainer from './containers/BodyContainer'
 
 class App extends Component {
   
@@ -29,8 +30,11 @@ class App extends Component {
 
   showHomePage = () => {
     return(<>
+    {/* <Navbar/> */}
     <h1>You are logged In!</h1>
-      <button onClick={this.handleLogOut}>Log Out</button></>)
+      <button onClick={this.handleLogOut}>Log Out</button>
+      <BodyContainer/>
+      </>)
 
   }
 
