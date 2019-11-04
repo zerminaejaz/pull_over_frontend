@@ -1,20 +1,39 @@
 // ACTION CREATORS
 
 const setUserAction = userObj => ({
-    type: 'SET_USER',
-    payload: userObj
-  });
-  
-  const clearUserAction = () => ({
-    type: 'CLEAR_USER',
-    payload: {}
-  });
-  
-  const logoutUser = () => dispatch => {
-    dispatch(clearUserAction())
-    localStorage.clear()
+  type: 'SET_USER',
+  payload: userObj
+});
+
+const clearUserAction = () => ({
+  type: 'CLEAR_USER',
+  payload: {}
+});
+
+const holdPosts = postsArray => ({
+  type: "HOLD_POSTS",
+  payload: postsArray
+})
+
+const logoutUser = () => dispatch => {
+  dispatch(clearUserAction())
+  localStorage.clear()
   }
-  // FETCH
+  
+// FETCH
+const getPosts = () => dispatch => {
+  console.log("getPosts/actions")
+    fetch('http://localhost:3000/posts', {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(r => r.json())
+      .then(postsArray => {
+        dispatch(holdPosts(postsArray));
+      });
+          
+  }
   
   const persistUserFromAPI = () => dispatch => {
     fetch('http://localhost:3000/persist', {
@@ -66,5 +85,6 @@ const setUserAction = userObj => ({
     persistUserFromAPI,
     loginUserToDB,
     createNewUserToDB,
-    logoutUser
+    logoutUser,
+    getPosts
   };

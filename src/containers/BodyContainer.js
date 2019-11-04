@@ -20,7 +20,7 @@ const mapDispatchToProps = {
   };
   
   const mapStateToProps = (state)=> {
-    return {user: state}
+    return {user: state.user}
   }
   
   export default connect(
