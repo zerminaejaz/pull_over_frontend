@@ -25,6 +25,17 @@ class HomeContainer extends Component{
 
   }
 
+  checkLocation = (e) => {
+    if ("geolocation" in navigator) {
+      // debugger
+      navigator.geolocation.getCurrentPosition(()=>function(position) {
+        console.log("Location: ", position.coords)
+        this.setUserLocation(position.coords);
+      });
+    } else {
+      console.log("Location not available")
+    }
+  }
 
   setUserLocation = (coords) => {
     if(coords){
@@ -51,24 +62,27 @@ class HomeContainer extends Component{
     return(
       array.map(post => {
         return(
-        <Marker key={post.id} longitude={parseFloat(post.longitude, 10)} latitude={parseFloat(post.latitude)}></Marker>
+        <Marker key={post.id} longitude={parseFloat(post.longitude, 10)} latitude={parseFloat(post.latitude)}>
+          <button className="marker-btn"><img src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px"></img></button>
+        </Marker>
         )
       })
     )
   }
 
     render(){
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(()=>function(position) {
-          console.log("Location: ", position.coords)
-          this.setUserLocation(position.coords);
-        });
-      } else {
-        console.log("Location not available")
-      }
+      // if ("geolocation" in navigator) {
+      //   navigator.geolocation.getCurrentPosition(()=>function(position) {
+      //     console.log("Location: ", position.coords)
+      //     this.setUserLocation(position.coords);
+      //   });
+      // } else {
+      //   console.log("Location not available")
+      // }
 
         return(
             <>
+            {this.checkLocation()}
             <br></br><br></br>
             <div className="columns has-text-centered is-mobile is-centered">
               <div className="column auto">
