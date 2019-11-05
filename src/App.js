@@ -32,13 +32,15 @@ class App extends Component {
   showHomePage = () => {
     return(<>
       <div className="container is-centered has-text-centered">
+        <div className = "columns is-full"></div>
           <div className="column is-full">
             <Navbar/>
+          </div>
+          <div className="column is-full">
             <BodyContainer/>  
           </div>
       </div>
       </>)
-
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../Redux/actions';
+import PostForm from '../components/home_components/PostForm';
 
 class PosteesInfoContainer extends Component{
 
@@ -20,8 +21,7 @@ class PosteesInfoContainer extends Component{
   givePermissions = (post) => {
     return(this.props.user.id === post.id? 
       <>
-        <a href="#" className="card-footer-item">Save</a>
-        <a href="#" className="card-footer-item">Edit</a>
+        <a href="#" onClick={()=>this.renderPostEditForm(post)} className="card-footer-item">Edit</a>
         <a href="#" className="card-footer-item">Delete</a>
     </>
     :
@@ -31,46 +31,42 @@ class PosteesInfoContainer extends Component{
     )
   }
 
-  renderPostInfo = (post) => {
-    // debugger
-    return( 
-      <div className="card">
-  <header className="card-header">
-  <p className="card-header-title">
-     {this.returnStyledStatus(post.status)}
-    </p>
-    <p className="card-header-title">
-      ${post.price}
-    </p>
-    <a href="#" className="card-header-icon" aria-label="more options">
-      <span className="icon">
-        <i className="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </a>
-  </header>
-  <div className="card-content">
-    <div className="content">
-      <p>
-        {post.description}
-      </p>
-      <a href="#">@{post.user.username}</a>
-      <br></br>
-      <time dateTime="2016-1-1">{post.created_at}</time>
-    </div>
-  </div>
-  <footer className="card-footer">
-    {this.givePermissions(post)}
-  </footer>
-</div>
-    )
-
+  renderPostEditForm = (post) =>{
+    return(<><PostForm/></>)
   }
 
     render(){
         return(
             <>
-            <h1>Post Information</h1>
-            {this.props.post? this.renderPostInfo(this.props.post):null}
+            {this.props.post? 
+            <div className="card">
+            <header className="card-header">
+            <p className="card-header-title">
+              {this.returnStyledStatus(this.props.post.status)}
+              </p>
+              <p className="card-header-title">
+                ${this.props.post.price}
+              </p>
+              <a href="#" className="card-header-icon" aria-label="more options">
+                <span className="icon">
+                  <i className="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div className="card-content">
+              <div className="content">
+                <p>
+                  {this.props.post.description}
+                </p>
+                <a href="#">@{this.props.post.user.username}</a>
+                <br></br>
+              </div>
+            </div>
+            <footer className="card-footer">
+              {this.givePermissions(this.props.post)}
+            </footer>
+              </div>          
+              :null}
             </>
         )
     }

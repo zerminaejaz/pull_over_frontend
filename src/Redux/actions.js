@@ -10,6 +10,11 @@ const clearUserAction = () => ({
   payload: {}
 });
 
+const updatePostAction= (post) => ({
+  type: 'UPDATE_POST',
+  payload: post
+})
+
 const holdPosts = postsArray => ({
   type: "HOLD_POSTS",
   payload: postsArray
@@ -28,6 +33,7 @@ const clearPost = () => ({
   type: "CLEAR_POST",
   payload: null
 })
+
 
   
 // FETCH
@@ -88,6 +94,21 @@ const getPosts = () => dispatch => {
       .then(data => {
         dispatch(setUserAction(data.user));
         localStorage.token = data.token;
+      });
+  };
+
+  const updatePost = post => dispatch => {
+    const config = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
+    };
+    fetch(`http://localhost:3000/posts/${post.id}`, config)
+      .then(r => r.json())
+      .then(post => {
+        dispatch(updatePostAction(post));
       });
   };
   

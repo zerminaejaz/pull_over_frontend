@@ -4,7 +4,7 @@ import Actions from '../Redux/actions';
 // import PopupShow from '../components/home_components/PopupShow';
 import PosteesInfoContainer from './PosteesInfoContainer';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
-// import PostForm from '../components/home_components/PostForm';
+import PostForm from '../components/home_components/PostForm';
 
 
 class HomeContainer extends Component{
@@ -17,18 +17,18 @@ class HomeContainer extends Component{
       longitude: -73.987667,
       zoom: 15
     },
+    createButtonClicked: false
   };
 
-  //get posts
+  //LifeCycles
   componentDidMount = () => {
     this.props.getPosts()
-
   }
 
+  //helper methods
   checkLocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
-        
         this.setState({
           viewport:{
             ...this.state.viewport,
@@ -43,13 +43,35 @@ class HomeContainer extends Component{
     }
   }
 
-  handleSelectedPost = (post) => {
-    this.props.sendPost(post)
-    // this.renderPopUp()
-  }
-
   closePopup = () => {
     return this.props.clearPost()
+  }
+
+  createMarkers = (array) => {
+    return(
+      array.map(post => {
+        return(
+        <Marker key={post.id} longitude={parseFloat(post.longitude)} latitude={parseFloat(post.latitude)}>
+          <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
+          {this.props.post ? this.renderPopUp():null}
+        </Marker>
+        )
+      })
+    )
+  }
+
+  createPost = () => {
+    this.setState({
+      createButtonClicked: true
+    })
+    return(
+      <PostForm/>
+    )
+
+  }
+
+  handleSelectedPost = (post) => {
+    this.props.sendPost(post)
   }
 
   setView = r => {
@@ -70,21 +92,8 @@ class HomeContainer extends Component{
       latitude={parseFloat(this.props.post.latitude)}
       longitude={parseFloat(this.props.post.longitude)}
       onClose={this.closePopup}>
-      <p>HotSpot Information</p>
+      <p>{this.props.post.price}</p>
     </Popup>)
-  }
-
-  createMarkers = (array) => {
-    return(
-      array.map(post => {
-        return(
-        <Marker key={post.id} longitude={parseFloat(post.longitude)} latitude={parseFloat(post.latitude)}>
-          <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
-          {this.props.post ? this.renderPopUp():null}
-        </Marker>
-        )
-      })
-    )
   }
 
     render(){
@@ -97,6 +106,13 @@ class HomeContainer extends Component{
                 {this.props.posts ? this.showMap() : null}
               </div>
             </div>
+            <div className="columns has-text-centered is-mobile is-centered">
+              <div className="column">
+                  <button className="button is-link" onClick={this.createPost}>Create Post</button>
+                </div>
+            </div>
+
+            
             <div className="columns has-text-centered is-mobile is-centered">
               <div className="column">
                 <PosteesInfoContainer/>
