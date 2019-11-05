@@ -17,7 +17,6 @@ class HomeContainer extends Component{
       longitude: -73.987667,
       zoom: 15
     },
-    createButtonClicked: false
   };
 
   //LifeCycles
@@ -36,6 +35,11 @@ class HomeContainer extends Component{
             longitude: position.coords.longitude
           }
         }) 
+        const location = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        }
+        this.props.setUserLocation(location)
       })
     }
       else {
@@ -53,7 +57,7 @@ class HomeContainer extends Component{
         return(
         <Marker key={post.id} longitude={parseFloat(post.longitude)} latitude={parseFloat(post.latitude)}>
           <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
-          {this.props.post ? this.renderPopUp():null}
+          {/* {this.props.post ? this.renderPopUp():null} */}
         </Marker>
         )
       })
@@ -61,17 +65,16 @@ class HomeContainer extends Component{
   }
 
   createPost = () => {
-    this.setState({
-      createButtonClicked: true
-    })
-    return(
-      <PostForm/>
-    )
-
+   this.props.switchFormOn()
   }
 
   handleSelectedPost = (post) => {
+    this.props.switchFormOff()
     this.props.sendPost(post)
+  }
+
+  renderForm = () => {
+    return(<><PostForm/></>)
   }
 
   setView = r => {
@@ -111,11 +114,9 @@ class HomeContainer extends Component{
                   <button className="button is-link" onClick={this.createPost}>Create Post</button>
                 </div>
             </div>
-
-            
             <div className="columns has-text-centered is-mobile is-centered">
               <div className="column">
-                <PosteesInfoContainer/>
+                {this.props.formSwitch? this.renderForm(): <PosteesInfoContainer/>}
               </div>
             </div>
             </>
@@ -127,13 +128,19 @@ const mapDispatchToProps = {
     logoutUser: Actions.logoutUser,
     getPosts: Actions.getPosts,
     sendPost: Actions.sendPost,
-    clearPost: Actions.clearPost
+    clearPost: Actions.clearPost,
+    switchFormOn: Actions.switchFormOn,
+    switchFormOff: Actions.switchFormOff,
+    setUserLocation: Actions.setUserLocation
   };
   
   const mapStateToProps = (state)=> {
     return {user: state.user,
       posts: state.posts,
-      post: state.post}
+      post: state.post,
+      formSwitch: state.formSwitch,
+      location: state.location
+    }
   }
   
   export default connect(

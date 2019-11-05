@@ -25,77 +25,88 @@ class PostForm extends Component{
     })
   }
 
-  formSubmitted = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.props.updatePost(this.state)
+    this.props.switchFormOff()
+  }
+
+  setLocationInState = (location) => { 
+    function floatToStr(num) {
+      return num.toString().indexOf('.') === -1 ? num.toFixed(1) : num.toString();
+    }
+
+   this.setState({
+     latitude: floatToStr(location.latitude),
+     longitude: floatToStr(location.longitude)
+   })
+    
   }
 
     render(){
-      
-      return (<form onSubmit={ this.formSubmitted }>
-        <label htmlFor="price">Price</label>
-        <input 
-          type="number" 
-          onChange={this.inputChanged }
-          value={ this.state.price }
-          name="price"
-           />
-        <label htmlFor="description">Description</label>
-        <input 
-          type="text" 
-          onChange={ this.inputChanged }
-          value={ this.state.description }
-          name="description"
-           />
-        <label htmlFor="case">Case</label>
-        <input 
-          type="text" 
-          onChange={ this.inputChanged }
-          value={ this.state.case }
-          name="case"
-           />
-        <label htmlFor="price">Car</label>
-        <input 
-          type="text" 
-          onChange={ this.inputChanged }
-          value={ this.state.car }
-          name="car"
-           />
-        <label htmlFor="status">Status</label>
-        <input 
-          type="text" 
-          onChange={ this.inputChanged }
-          value={ this.state.status }
-          name="status"
-           />
-        <label htmlFor="latitude">Latitude</label>
-        <input 
-          type="text" 
-          onChange={ this.inputChanged }
-          value={ this.state.latitude }
-          name="latitude"
-           />
-        <label htmlFor="longitude">longitude</label>
-        <input 
-          type="text" 
-          onChange={ this.inputChanged }
-          value={ this.state.longitude }
-          name="longitude"
-           />
-          <input type="submit" />
-      </form>)
+      return (<>
+      { !this.props.location ? this.setLocationInState(this.props.location): null}
+        <form>
+          <label htmlFor="price">Price</label>
+          <div className="control">
+            <input className="input" name="price" onChange={this.inputChanged} type="number" value={this.state.price}/>
+          </div>
+    
+          <div className="field">
+            <label className="description">Description</label>
+            <div className="control">
+              <input className="input" name="description" onChange={this.inputChanged} type="text" value={this.state.description}/>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="case">Case</label>
+            <div className="control">
+              <input className="input" name="case" onChange={this.inputChanged} type="text" value={this.state.case}/>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="car">Car</label>
+            <div className="control">
+              <input className="input" name="car" onChange={this.inputChanged} type="text" value={this.state.car}/>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="status">Status</label>
+            <div className="control">
+              <input className="input" name="status" onChange={this.inputChanged} type="text" value={this.state.status}/>
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="longitude">Longitude</label>
+            <div className="control">
+              <input className="input" name="longitude" onChange={this.inputChanged} type="text" value={this.state.longitude}/>
+            </div>
+          </div>
+        
+          <div className="control is-centered">
+            <button type="submit" className="button is-primary">Submit</button>
+          </div>
+      </form>
+      </>
+      )
     }
 }
 
 const mapDispatchToProps = {
     createPost: Actions.createPost,
-    updatePost: Actions.updatePost
+    updatePost: Actions.updatePost,
+    switchFormOff: Actions.switchFormOff
   };
   
   const mapStateToProps = (state)=> {
     return {user: state.user,
       posts: state.posts,
-      post: state.post}
+      post: state.post,
+      location: state.location}
   }
   
   export default connect(

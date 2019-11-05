@@ -23,12 +23,30 @@ const holdPosts = postsArray => ({
 const logoutUser = () => dispatch => {
   dispatch(clearUserAction())
   localStorage.clear()
-  }
+}
+
+const setUserLocation = (locationObj) => (
+  {
+  type:"SET_USER_LOCATION",
+  payload: locationObj
+})
+
 
 const sendPost = post => ({
   type: "SEND_POST",
   payload: post
 })
+
+const switchFormOn = () => ({
+  type: "SWITCH_FORM_ON",
+  payload: true
+})
+
+const switchFormOff = () => ({
+  type: "SWITCH_FORM_OFF",
+  payload: false
+})
+
 const clearPost = () => ({
   type: "CLEAR_POST",
   payload: null
@@ -119,5 +137,9 @@ const getPosts = () => dispatch => {
     logoutUser,
     getPosts,
     sendPost,
-    clearPost
+    clearPost,
+    updatePost,
+    switchFormOff,
+    switchFormOn,
+    setUserLocation
   };

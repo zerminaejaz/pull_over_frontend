@@ -21,7 +21,7 @@ class PosteesInfoContainer extends Component{
   givePermissions = (post) => {
     return(this.props.user.id === post.id? 
       <>
-        <a href="#" onClick={()=>this.renderPostEditForm(post)} className="card-footer-item">Edit</a>
+        <a href="#" onClick={()=>this.switchOnFormAndEdit(post)} className="card-footer-item">Edit</a>
         <a href="#" className="card-footer-item">Delete</a>
     </>
     :
@@ -31,8 +31,14 @@ class PosteesInfoContainer extends Component{
     )
   }
 
-  renderPostEditForm = (post) =>{
+
+  renderPostForm = (post) =>{
     return(<><PostForm/></>)
+  }
+
+  switchOnFormAndEdit = (post) => {
+    // switchForm()
+    
   }
 
     render(){
