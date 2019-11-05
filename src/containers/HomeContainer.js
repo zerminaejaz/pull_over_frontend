@@ -11,11 +11,11 @@ class HomeContainer extends Component{
   
   state = {
     viewport: {
-      width: "50vw",
-      height: "50vh",
+      width: "90vw",
+      height: "40vh",
       latitude: 40.700819,
       longitude: -73.987667,
-      zoom: 10
+      zoom: 15
     },
     // selectedPost: null
   };
@@ -101,14 +101,13 @@ class HomeContainer extends Component{
             {this.checkLocation()}
             <br></br><br></br>
             <div className="columns has-text-centered is-mobile is-centered">
-              <div className="column auto">
+              <div className="column is-full">
                 {this.props.posts ? this.showMap() : null}
               </div>
-              <div className="column auto">
-                <PopupShow/>
+            </div>
+            <div className="columns has-text-centered is-mobile is-centered">
+              <div className="column is-full">
                 <PosteesInfoContainer/>
-                <PostForm/>
-                
               </div>
             </div>
             </>

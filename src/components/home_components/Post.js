@@ -5,10 +5,8 @@ import Actions from '../../Redux/actions';
 class Post extends Component{
 
     render(){
-        return(
-            <>
-            </>
-        )
+        return(<>
+      </>)
     }
 
 }
