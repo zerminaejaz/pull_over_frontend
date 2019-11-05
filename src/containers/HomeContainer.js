@@ -1,23 +1,22 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import Actions from '../Redux/actions';
-import PopupShow from '../components/home_components/PopupShow';
+// import PopupShow from '../components/home_components/PopupShow';
 import PosteesInfoContainer from './PosteesInfoContainer';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
-import PostForm from '../components/home_components/PostForm';
+// import PostForm from '../components/home_components/PostForm';
 
 
 class HomeContainer extends Component{
   
   state = {
     viewport: {
-      width: "90vw",
+      width: "100vw",
       height: "40vh",
       latitude: 40.700819,
       longitude: -73.987667,
       zoom: 15
     },
-    // selectedPost: null
   };
 
   //get posts
@@ -38,25 +37,19 @@ class HomeContainer extends Component{
           }
         }) 
       })
-     
     }
       else {
       console.log("Location not available")
     }
   }
 
-  handleSelectedPost = post => {
+  handleSelectedPost = (post) => {
     this.props.sendPost(post)
-      // this.setState({
-      //   selectedPost: post
-      // })
+    // this.renderPopUp()
   }
 
-  onClose = () => {
-    this.props.clearPost()
-    // this.setState({
-    //   selectedPost: null
-    // })
+  closePopup = () => {
+    return this.props.clearPost()
   }
 
   setView = r => {
@@ -84,10 +77,9 @@ class HomeContainer extends Component{
   createMarkers = (array) => {
     return(
       array.map(post => {
-        
         return(
         <Marker key={post.id} longitude={parseFloat(post.longitude)} latitude={parseFloat(post.latitude)}>
-          <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px"></img>
+          <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
           {this.props.post ? this.renderPopUp():null}
         </Marker>
         )
@@ -100,13 +92,13 @@ class HomeContainer extends Component{
             <>
             {this.checkLocation()}
             <br></br><br></br>
-            <div className="columns has-text-centered is-mobile is-centered">
-              <div className="column is-full">
+            <div className="columns has-text-centered is-full is-mobile is-centered">
+              <div className="column">
                 {this.props.posts ? this.showMap() : null}
               </div>
             </div>
             <div className="columns has-text-centered is-mobile is-centered">
-              <div className="column is-full">
+              <div className="column">
                 <PosteesInfoContainer/>
               </div>
             </div>

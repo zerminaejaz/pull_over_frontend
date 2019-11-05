@@ -4,32 +4,62 @@ import Actions from '../Redux/actions';
 
 class PosteesInfoContainer extends Component{
 
+  returnStyledStatus = (status) => {
+    switch(status){
+      case "open":
+        return(<font color="green">{status.toUpperCase()}</font>)
+      case "completed":
+          return(<font color="red">{status.toUpperCase()}</font>)
+      case "pending":
+          return(<font color="orange">{status.toUpperCase()}</font>)
+      default:
+          return(<font color="blue">{status.toUpperCase()}</font>)
+    }
+  }
+
+  givePermissions = (post) => {
+    return(this.props.user.id === post.id? 
+      <>
+        <a href="#" className="card-footer-item">Save</a>
+        <a href="#" className="card-footer-item">Edit</a>
+        <a href="#" className="card-footer-item">Delete</a>
+    </>
+    :
+    <>
+        <a href="#" className="card-footer-item">Help Driver</a>
+    </>
+    )
+  }
+
   renderPostInfo = (post) => {
     // debugger
     return( 
-      <div class="card">
-  <header class="card-header">
-    <p class="card-header-title">
-      Component
+      <div className="card">
+  <header className="card-header">
+  <p className="card-header-title">
+     {this.returnStyledStatus(post.status)}
     </p>
-    <a href="#" class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
+    <p className="card-header-title">
+      ${post.price}
+    </p>
+    <a href="#" className="card-header-icon" aria-label="more options">
+      <span className="icon">
+        <i className="fas fa-angle-down" aria-hidden="true"></i>
       </span>
     </a>
   </header>
-  <div class="card-content">
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-      <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+  <div className="card-content">
+    <div className="content">
+      <p>
+        {post.description}
+      </p>
+      <a href="#">@{post.user.username}</a>
       <br></br>
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      <time dateTime="2016-1-1">{post.created_at}</time>
     </div>
   </div>
-  <footer class="card-footer">
-    <a href="#" class="card-footer-item">Save</a>
-    <a href="#" class="card-footer-item">Edit</a>
-    <a href="#" class="card-footer-item">Delete</a>
+  <footer className="card-footer">
+    {this.givePermissions(post)}
   </footer>
 </div>
     )
@@ -47,8 +77,8 @@ class PosteesInfoContainer extends Component{
 
 }
 const mapDispatchToProps = {
-    persistUserFromAPI: Actions.persistUserFromAPI,
-    logoutUser: Actions.logoutUser
+    // persistUserFromAPI: Actions.persistUserFromAPI,
+    // logoutUser: Actions.logoutUser
   };
   
   const mapStateToProps = (state)=> {
