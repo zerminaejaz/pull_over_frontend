@@ -4,6 +4,7 @@ import Actions from '../Redux/actions';
 import PopupShow from '../components/home_components/PopupShow';
 import PosteesInfoContainer from './PosteesInfoContainer';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
+import PostForm from '../components/home_components/PostForm';
 
 
 class HomeContainer extends Component{
@@ -64,7 +65,8 @@ class HomeContainer extends Component{
 
   showMap = () => {
     return(
-    <ReactMapGL {...this.state.viewport} onViewportChange={this.setView} mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3"mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
+    <ReactMapGL {...this.state.viewport} onViewportChange={this.setView} 
+    mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
         {this.createMarkers(this.props.posts)}
     </ReactMapGL>
     )
@@ -105,6 +107,8 @@ class HomeContainer extends Component{
               <div className="column auto">
                 <PopupShow/>
                 <PosteesInfoContainer/>
+                <PostForm/>
+                
               </div>
             </div>
             </>
