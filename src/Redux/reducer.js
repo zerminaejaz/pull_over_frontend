@@ -27,12 +27,13 @@ export default (state={}, { type, payload }) => {
           posts: payload,
           ...state
         }
-      case "SEND_POST":
+      case "SEND_POST": {
         return {
           ...state,
           post: payload,
           ...state
         }
+      }     
       case "UPDATE_POST":
         return {
           ...state,

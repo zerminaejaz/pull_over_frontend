@@ -44,14 +44,13 @@ class PosteesInfoContainer extends Component{
     render(){
         return(
             <>
-            {this.props.post? 
             <div className="card">
             <header className="card-header">
             <p className="card-header-title">
-              {this.returnStyledStatus(this.props.post.status)}
+              {this.returnStyledStatus(this.props.clickedPost.status)}
               </p>
               <p className="card-header-title">
-                ${this.props.post.price}
+                ${this.props.clickedPost.price}
               </p>
               <a href="#" className="card-header-icon" aria-label="more options">
                 <span className="icon">
@@ -62,22 +61,21 @@ class PosteesInfoContainer extends Component{
             <div className="card-content">
               <div className="content">
                 <p>
-                  {this.props.post.description}
+                  {this.props.clickedPost.description}
                 </p>
-                <a href="#">@{this.props.post.user.username}</a>
+                <a href="#">@{this.props.clickedPost.user.username}</a>
                 <br></br>
               </div>
             </div>
             <footer className="card-footer">
-              {this.givePermissions(this.props.post)}
+              {this.givePermissions(this.props.clickedPost)}
             </footer>
               </div>          
-              :null}
             </>
         )
-    }
-
+            }
 }
+
 const mapDispatchToProps = {
     // persistUserFromAPI: Actions.persistUserFromAPI,
     // logoutUser: Actions.logoutUser

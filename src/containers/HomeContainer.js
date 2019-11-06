@@ -17,6 +17,8 @@ class HomeContainer extends Component{
       longitude: -73.987667,
       zoom: 15
     },
+    clickedPost: null,
+    formSwitch: false
   };
 
   //LifeCycles
@@ -56,13 +58,28 @@ class HomeContainer extends Component{
    this.props.switchFormOn()
   }
 
-  handleSelectedPost = (post) => {
-    this.props.switchFormOff()
-    this.props.sendPost(post)
+ handleMarkerClick = (post) => {
+    this.setState({
+      formSwitch: false,
+      clickedPost: post
+    })
+    // console.log("Switch: ", this.state.formSwitch)
   }
 
   renderForm = () => {
     return(<><PostForm/></>)
+  }
+
+  renderMarker = (post) => {
+      return(
+        <Marker
+        key={post.id}
+        latitude={parseFloat(post.latitude)}
+        longitude={parseFloat(post.longitude)}
+      >
+          <img onClick={()=> this.handleMarkerClick(post)} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
+      </Marker>
+      )
   }
 
   setView = r => {
@@ -70,64 +87,44 @@ class HomeContainer extends Component{
   }
 
   showMap = () => {
-    // debugger
     return(
       <ReactMapGL
       {...this.state.viewport} onViewportChange={this.setView} 
       mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
         {this.props.posts.map(post => (
-          <Marker
-            key={post.id}
-            latitude={parseFloat(post.latitude)}
-            longitude={parseFloat(post.longitude)}
-          >
-            {/* <button
-              className="marker-btn"
-              onClick={e => {
-                e.preventDefault();
-                this.sendPost(post);
-              }}
-            > */}
-              <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
-            {/* </button> */}
-          </Marker>
+          this.renderMarker(post)
         ))}
-
-        {this.props.post ? (
-          <Popup
-            latitude={parseFloat(this.props.post.latitude)}
-            longitude={parseFloat(this.props.post.longitude)}
-            onClose={() => {
-              this.closePopup();
-            }}
-          >
-            <div>
-              <h2>${this.props.post.price}</h2>
-            </div>
-          </Popup>
-        ) : null}
+        {this.renderPopUp()}
       </ReactMapGL>
     )
   }
 
   renderPopUp = () =>{
-    return(<Popup
-      latitude={parseFloat(this.props.post.latitude)}
-      longitude={parseFloat(this.props.post.longitude)}
-      onClose={this.closePopup}>
-      <p>{this.props.post.price}</p>
-    </Popup>)
+    if (this.props.post) {
+    return(           <Popup
+        latitude={parseFloat(this.props.post.latitude)}
+        longitude={parseFloat(this.props.post.longitude)}
+        onClose={() => {
+          this.closePopup();
+        }}
+      >
+        <div>
+          <h2>${this.props.post.price}</h2>
+        </div>
+      </Popup>)
+    }
+    return null
   }
 
     render(){
+      console.log("Switch: ", this.state.formSwitch)
         return(
             <>
             {this.checkLocation()}
             <br></br><br></br>
             <div className="columns has-text-centered is-mobile is-centered">
               <div className="column">
-                {this.props.posts ? this.showMap():null}
-                {/* {this.props.post? this.createPopup():null} */}
+                {this.props.posts ? this.showMap() : null}
               </div>
             </div>
             <div className="columns has-text-centered is-mobile is-centered">
@@ -137,7 +134,7 @@ class HomeContainer extends Component{
             </div>
             <div className="columns has-text-centered is-mobile is-centered">
               <div className="column">
-                {this.props.formSwitch? this.renderForm(): <PosteesInfoContainer/>}
+                {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? <PosteesInfoContainer clickedPost={this.state.clickedPost} formSwitch={this.state.formSwitch}/> : console.log("what the hell", this.state.clickedPost)}
               </div>
             </div>
             </>

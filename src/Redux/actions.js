@@ -32,10 +32,10 @@ const setUserLocation = (locationObj) => (
 })
 
 
-const sendPost = post => ({
+const sendPost = post => dispatch => dispatch(({
   type: "SEND_POST",
   payload: post
-})
+}))
 
 const switchFormOn = () => ({
   type: "SWITCH_FORM_ON",
