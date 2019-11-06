@@ -48,20 +48,8 @@ class HomeContainer extends Component{
   }
 
   closePopup = () => {
+    console.log("CLose Pop")
     return this.props.clearPost()
-  }
-
-  createMarkers = (array) => {
-    return(
-      array.map(post => {
-        return(
-        <Marker key={post.id} longitude={parseFloat(post.longitude)} latitude={parseFloat(post.latitude)}>
-          <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
-          {/* {this.props.post ? this.renderPopUp():null} */}
-        </Marker>
-        )
-      })
-    )
   }
 
   createPost = () => {
@@ -82,11 +70,43 @@ class HomeContainer extends Component{
   }
 
   showMap = () => {
+    // debugger
     return(
-    <ReactMapGL {...this.state.viewport} onViewportChange={this.setView} 
-    mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
-        {this.createMarkers(this.props.posts)}
-    </ReactMapGL>
+      <ReactMapGL
+      {...this.state.viewport} onViewportChange={this.setView} 
+      mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
+        {this.props.posts.map(post => (
+          <Marker
+            key={post.id}
+            latitude={parseFloat(post.latitude)}
+            longitude={parseFloat(post.longitude)}
+          >
+            {/* <button
+              className="marker-btn"
+              onClick={e => {
+                e.preventDefault();
+                this.sendPost(post);
+              }}
+            > */}
+              <img onClick={()=>{this.handleSelectedPost(post)}} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
+            {/* </button> */}
+          </Marker>
+        ))}
+
+        {this.props.post ? (
+          <Popup
+            latitude={parseFloat(this.props.post.latitude)}
+            longitude={parseFloat(this.props.post.longitude)}
+            onClose={() => {
+              this.closePopup();
+            }}
+          >
+            <div>
+              <h2>${this.props.post.price}</h2>
+            </div>
+          </Popup>
+        ) : null}
+      </ReactMapGL>
     )
   }
 
@@ -104,9 +124,10 @@ class HomeContainer extends Component{
             <>
             {this.checkLocation()}
             <br></br><br></br>
-            <div className="columns has-text-centered is-full is-mobile is-centered">
+            <div className="columns has-text-centered is-mobile is-centered">
               <div className="column">
-                {this.props.posts ? this.showMap() : null}
+                {this.props.posts ? this.showMap():null}
+                {/* {this.props.post? this.createPopup():null} */}
               </div>
             </div>
             <div className="columns has-text-centered is-mobile is-centered">

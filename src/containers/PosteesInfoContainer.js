@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Actions from '../Redux/actions';
+// import Actions from '../Redux/actions';
 import PostForm from '../components/home_components/PostForm';
 
 class PosteesInfoContainer extends Component{
