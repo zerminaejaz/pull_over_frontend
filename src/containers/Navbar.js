@@ -9,7 +9,7 @@ class Navbar extends Component{
 
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
-                <img src={this.props.user.picture} alt="profile"height="100px" width="100px"></img>
+                <img src={this.props.user.picture} alt="profile" height="100px" width="100px"></img>
               </div>
               <div className="column">
                 <h1>{this.props.user.username}</h1>
@@ -28,7 +28,7 @@ const mapDispatchToProps = {
   };
   
   const mapStateToProps = (state)=> {
-    return {user: state}
+    return {user: state.user}
   }
   
   export default connect(

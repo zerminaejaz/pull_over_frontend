@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Actions from '../Redux/actions';
 import { connect } from 'react-redux';
-import Form from './Form';
 
 class LoginForm extends Component {
 
@@ -15,8 +14,11 @@ class LoginForm extends Component {
   handleLogInUserToDb=(e, state)=>{
     e.preventDefault()
     // console.log('i was clicked')
-    return(this.props.loginUserToDB(state))
-
+    this.props.loginUserToDB(state)
+    this.setState({
+      username: "",
+      password: ""
+    })
   }
 
   handleSwitch = () => {
@@ -28,12 +30,12 @@ class LoginForm extends Component {
     return (<>
       <div className="columns is-vcentered is-centered is-mobile">
       <div className="login column is-6 ">
-        <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"/>
+        <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="city"/>
       </div>
       <div className="login columns is-centered">
       <section className="section">
         <div className="has-text-centered">
-            <img className="login-logo" src="https://png.pngtree.com/svg/20161210/p_970543.png"/>
+            <img className="login-logo" src="https://png.pngtree.com/svg/20161210/p_970543.png" alt="sticker"/>
         </div>
 
         <div className="field">
@@ -59,7 +61,7 @@ class LoginForm extends Component {
           </div>
         </div>
         <div className="has-text-centered">
-          <a onClick={e => this.handleLogInUserToDb(e, this.state)}className="button is-vcentered is-primary is-outlined ">Login</a>
+          <button onClick={e => this.handleLogInUserToDb(e, this.state)}className="button is-vcentered is-primary is-outlined ">Login</button>
         </div>
         <div className="has-text-centered">
           <br></br>

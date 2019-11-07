@@ -78,7 +78,7 @@ const getPosts = () => dispatch => {
     })
       .then(r => r.json())
       .then(user => {
-        console.log(user)
+        // console.log(user)
         dispatch(setUserAction(user));
       });
 
@@ -95,6 +95,7 @@ const getPosts = () => dispatch => {
     fetch('http://localhost:3000/login', config)
       .then(r => r.json())
       .then(data => {
+        // console.log(data)
         localStorage.token = data.token;
         dispatch(setUserAction(data.user));
       });

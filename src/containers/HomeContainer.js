@@ -68,7 +68,6 @@ class HomeContainer extends Component{
   }
 
   renderForm = () => {
- debugger
     return(<><PostForm location={this.props.location} /></>)
   }
 

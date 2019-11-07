@@ -39,8 +39,6 @@ class PostForm extends Component{
   }
 
   setLocationInState = () => { 
-    debugger
-    
     function floatToStr(num) {
       return num.toString().indexOf('.') === -1 ? num.toFixed(1) : num.toString();
     }

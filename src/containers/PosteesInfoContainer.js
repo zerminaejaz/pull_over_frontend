@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Actions from '../Redux/actions';
+
 import PostForm from '../components/home_components/PostForm';
 
 class PosteesInfoContainer extends Component{
 
   returnStyledStatus = (status) => {
-    switch(status){
-      case "OPEN":
-        return(<font color="green">{status.toUpperCase()}</font>)
+    let formattedStatus = status.toUpperCase()
+    switch(formattedStatus){
+      case "OPEN" :
+        return(<font color="green">{formattedStatus}</font>)
       case "COMPLETED":
-          return(<font color="red">{status.toUpperCase()}</font>)
+          return(<font color="red">{formattedStatus}</font>)
       case "PENDING":
-          return(<font color="orange">{status.toUpperCase()}</font>)
+          return(<font color="orange">{formattedStatus}</font>)
       default:
-          return(<font color="blue">{status.toUpperCase()}</font>)
+          return(<font color="blue">{formattedStatus}</font>)
     }
   }
 
   givePermissions = (post) => {
     return(this.props.user.id === post.id? 
       <>
-        <a href="#" onClick={()=>this.switchOnFormAndEdit(post)} className="card-footer-item">Edit</a>
-        <a href="#" className="card-footer-item">Delete</a>
+        <p onClick={()=>this.switchOnFormAndEdit(post)} className="card-footer-item">Edit</p>
+        <button className="card-footer-item">Delete</button>
     </>
     :
     <>
-        <a href="#" className="card-footer-item">Help Driver</a>
+        <button href="#" className="card-footer-item">Help Driver</button>
     </>
     )
   }
@@ -82,7 +83,7 @@ const mapDispatchToProps = {
   };
   
   const mapStateToProps = (state)=> {
-    return {user: state,
+    return {user: state.user,
     post: state.post}
   }
   

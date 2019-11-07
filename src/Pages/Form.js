@@ -27,7 +27,7 @@ class Form extends Component {
     return (
       <div className="columns is-vcentered is-centered is-mobile">
 <div className="login column is-4 ">
-  <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"/>
+  <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="highway"/>
 </div>
 <div className="login column ">
 <section className="section">

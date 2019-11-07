@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoginForm from './Pages/LoginForm';
 import { connect } from 'react-redux';
 import Actions from './Redux/actions';
 import BodyContainer from './containers/BodyContainer'
@@ -22,12 +21,10 @@ class App extends Component {
   handleLogOut = () => {
     console.log("Clicked log out")
     this.props.logoutUser()
-
   }
 
   showHomePage = () => {
-
-    return(<>
+    return(
       <div className="container is-fluid">
         <div className = "columns is-full"></div>
           <div className="column is-full">
@@ -36,8 +33,7 @@ class App extends Component {
           <div className="column is-full">
             <BodyContainer/>  
           </div>
-      </div>
-      </>)
+      </div>)
   }
 
   checkForUser = () => {
@@ -50,7 +46,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <>
       {this.checkForUser()}
@@ -65,7 +60,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state)=> {
-  return {user: state}
+  return {user: state.user}
 }
 
 export default connect(
