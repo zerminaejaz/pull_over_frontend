@@ -1,7 +1,6 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import Actions from '../Redux/actions';
-// import PopupShow from '../components/home_components/PopupShow';
 import PosteesInfoContainer from './PosteesInfoContainer';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import PostForm from '../components/home_components/PostForm';
@@ -12,7 +11,7 @@ class HomeContainer extends Component{
   state = {
     viewport: {
       width: "100vw",
-      height: "40vh",
+      height: "50vh",
       latitude: 40.700819,
       longitude: -73.987667,
       zoom: 15
@@ -55,7 +54,9 @@ class HomeContainer extends Component{
   }
 
   createPost = () => {
-   this.props.switchFormOn()
+   this.setState({
+     formSwitch: true
+   })
   }
 
  handleMarkerClick = (post) => {
@@ -67,7 +68,8 @@ class HomeContainer extends Component{
   }
 
   renderForm = () => {
-    return(<><PostForm/></>)
+ debugger
+    return(<><PostForm location={this.props.location} /></>)
   }
 
   renderMarker = (post) => {
@@ -117,25 +119,21 @@ class HomeContainer extends Component{
   }
 
     render(){
-      console.log("Switch: ", this.state.formSwitch)
         return(
             <>
             {this.checkLocation()}
-            <br></br><br></br>
-            <div className="columns has-text-centered is-mobile is-centered">
+            {/* <br></br><br></br> */}
+            <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
                 {this.props.posts ? this.showMap() : null}
               </div>
             </div>
-            <div className="columns has-text-centered is-mobile is-centered">
+            <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
                   <button className="button is-link" onClick={this.createPost}>Create Post</button>
-                </div>
-            </div>
-            <div className="columns has-text-centered is-mobile is-centered">
-              <div className="column">
-                {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? <PosteesInfoContainer clickedPost={this.state.clickedPost} formSwitch={this.state.formSwitch}/> : console.log("what the hell", this.state.clickedPost)}
+                {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? <PosteesInfoContainer clickedPost={this.state.clickedPost} formSwitch={this.state.formSwitch}/> : null}
               </div>
+              
             </div>
             </>
         )

@@ -5,7 +5,7 @@ import Actions from '../../Redux/actions';
 class PostForm extends Component{
 
   state = {
-    user:this.props.user,
+    user: null,
     price: 0,
     description: "",
     case: "",
@@ -20,32 +20,40 @@ class PostForm extends Component{
   }
 
   inputChanged = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+    if(event.target.name === "status"){
+      this.setState({
+        [event.target.name]: event.target.value.toUpperCase()
+      })
+    }
+    else{
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
+    
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.updatePost(this.state)
-    this.props.switchFormOff()
+    this.props.createPost(this.state)
   }
 
-  setLocationInState = (location) => { 
+  setLocationInState = () => { 
+    debugger
+    
     function floatToStr(num) {
       return num.toString().indexOf('.') === -1 ? num.toFixed(1) : num.toString();
     }
 
    this.setState({
-     latitude: floatToStr(location.latitude),
-     longitude: floatToStr(location.longitude)
+     latitude: floatToStr(this.props.location.latitude),
+     longitude: floatToStr(this.props.location.longitude)
    })
-    
   }
 
     render(){
       return (<>
-      { !this.props.location ? this.setLocationInState(this.props.location): null}
+      { !this.state.latitude ? this.setLocationInState(): console.log("No Location")}
         <form>
           <label htmlFor="price">Price</label>
           <div className="control">
@@ -80,13 +88,7 @@ class PostForm extends Component{
             </div>
           </div>
 
-          <div className="field">
-            <label className="longitude">Longitude</label>
-            <div className="control">
-              <input className="input" name="longitude" onChange={this.inputChanged} type="text" value={this.state.longitude}/>
-            </div>
-          </div>
-        
+
           <div className="control is-centered">
             <button type="submit" className="button is-primary">Submit</button>
           </div>
@@ -106,7 +108,7 @@ const mapDispatchToProps = {
     return {user: state.user,
       posts: state.posts,
       post: state.post,
-      location: state.location}
+      }
   }
   
   export default connect(

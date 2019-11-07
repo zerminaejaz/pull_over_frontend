@@ -1,20 +1,20 @@
 export default (state={}, { type, payload }) => {
     switch (type) {
       case 'SET_USER':
-        return payload
+        return {
+          user: payload
+        }
       case 'CLEAR_USER':
         return {
-          ...state,
-          user: {},
-          ...state
+          user: null
         }
-      case "SET_USER_LOCATION":
+      case "SET_USER_LOCATION":{
         return{
           ...state,
           location: payload,
           ...state
         }
-      
+      }
       case "CLEAR_POST":
         return {
           ...state,

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Form from './Pages/Form';
 import LoginForm from './Pages/LoginForm';
 import { connect } from 'react-redux';
 import Actions from './Redux/actions';
 import BodyContainer from './containers/BodyContainer'
 import Navbar from './containers/Navbar';
+import SignupOrLogIn from './Pages/SignupOrLogIn';
+ 
 
 class App extends Component {
   
@@ -14,13 +15,8 @@ class App extends Component {
     }
   }
 
-  showLogInSignUpContainer = () => {
-    return (
-      <>
-        <Form />
-        <LoginForm />
-      </>
-    )
+  showSignupOrLogin = () => {
+    return(<><SignupOrLogIn/></>)
   }
 
   handleLogOut = () => {
@@ -30,8 +26,9 @@ class App extends Component {
   }
 
   showHomePage = () => {
+
     return(<>
-      <div className="container is-centered has-text-centered">
+      <div className="container is-fluid">
         <div className = "columns is-full"></div>
           <div className="column is-full">
             <Navbar/>
@@ -43,11 +40,21 @@ class App extends Component {
       </>)
   }
 
+  checkForUser = () => {
+    if (this.props.user && this.props.user.id){
+      return(this.showHomePage())
+    }
+    else{
+      return(this.showSignupOrLogin())
+    }
+  }
+
   render() {
+
     return (
-      <div>
-       {(this.props.user && this.props.user.id) ? this.showHomePage() : this.showLogInSignUpContainer() }
-      </div>
+      <>
+      {this.checkForUser()}
+      </>
     );
   }
 }

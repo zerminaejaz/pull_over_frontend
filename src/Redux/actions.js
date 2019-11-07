@@ -78,12 +78,13 @@ const getPosts = () => dispatch => {
     })
       .then(r => r.json())
       .then(user => {
+        console.log(user)
         dispatch(setUserAction(user));
       });
+
   };
   
   const loginUserToDB = userData => dispatch => {
-    
     const config = {
       method: 'POST',
       headers: {
@@ -97,6 +98,7 @@ const getPosts = () => dispatch => {
         localStorage.token = data.token;
         dispatch(setUserAction(data.user));
       });
+
   };
   
   const createNewUserToDB = userData => dispatch => {

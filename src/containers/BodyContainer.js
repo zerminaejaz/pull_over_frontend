@@ -8,7 +8,7 @@ class BodyContainer extends Component{
     render(){
         return(
             <>
-            <HomeContainer/>
+              <HomeContainer/>
             </>
         )
     }

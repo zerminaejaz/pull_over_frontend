@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../Redux/actions';
-import "./navbar.css"
 
 class Navbar extends Component{
 
-
     render(){
         return(
-            <div className="container has-text-centered is-centered navbar is-fluid">
-            <div className="columns has-text-centered is-mobile is-centered">
-                <div className="column auto">
-                    {/* onclick goes to account with account settings and postings*/}
-                     <img src={this.props.user.picture} alt="profile"height="100px" width="100px"></img>
-                    
-                </div>
-                <div className="column auto">
-                    <p>{this.props.user.username}</p>
-                </div>
-                <div className="column auto">
+
+            <div className="columns is-mobile is-centered has-text-centered">
+              <div className="column">
+                <img src={this.props.user.picture} alt="profile"height="100px" width="100px"></img>
+              </div>
+              <div className="column">
+                <h1>{this.props.user.username}</h1>
+              </div>
+              <div className="column">
                     <button onClick={this.handleLogOut}>Log Out</button>
-                </div>
+              </div>
             </div>
-        </div>)
+       )
     }
 
 }

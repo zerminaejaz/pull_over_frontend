@@ -1,46 +1,82 @@
 import React, { Component } from 'react';
 import Actions from '../Redux/actions';
 import { connect } from 'react-redux';
+import Form from './Form';
 
 class LoginForm extends Component {
+
   state = {
-    username: '',
-    password: ''
-  };
+    username: "",
+    password: ""
+  }
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   handleLogInUserToDb=(e, state)=>{
     e.preventDefault()
-    this.props.loginUserToDB(state)
+    // console.log('i was clicked')
+    return(this.props.loginUserToDB(state))
+
+  }
+
+  handleSwitch = () => {
+    // debugger
+    this.props.switchForm()
   }
 
   render() {
-    return (
-      <div>
-        <h1> Login</h1>
-        <form onSubmit={e => this.handleLogInUserToDb(e, this.state)}>
-          <input
-            type="text"
-            value={this.state.username}
-            name="username"
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            value={this.state.password}
-            name="password"
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
+    return (<>
+      <div className="columns is-vcentered is-centered is-mobile">
+      <div className="login column is-6 ">
+        <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"/>
       </div>
-    );
+      <div className="login columns is-centered">
+      <section className="section">
+        <div className="has-text-centered">
+            <img className="login-logo" src="https://png.pngtree.com/svg/20161210/p_970543.png"/>
+        </div>
+
+        <div className="field">
+          <label className="label">Username</label>
+          <div className="control has-icons-right">
+            <input className="input" type="text"value={this.state.username}
+            name="username"
+            onChange={this.handleChange}/>
+            <span className="icon is-small is-right">
+              <i className="fa fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div className="field">
+          <label className="label">Password</label>
+          <div className="control has-icons-right">
+            <input className="input" type="password" value={this.state.password}
+            name="password"
+            onChange={this.handleChange}/>
+            <span className="icon is-small is-right">
+              <i className="fa fa-key"></i>
+            </span>
+          </div>
+        </div>
+        <div className="has-text-centered">
+          <a onClick={e => this.handleLogInUserToDb(e, this.state)}className="button is-vcentered is-primary is-outlined ">Login</a>
+        </div>
+        <div className="has-text-centered">
+          <br></br>
+          <a className="is-primary" onClick={this.handleSwitch}> Don't you have an account? Sign up now!</a>
+        </div>
+      </section>
+      </div>
+      </div>
+    </>
+    )
   }
 }
 const mapDispatchToProps = {
   loginUserToDB: Actions.loginUserToDB
 };
+
+
 export default connect(
   null,
   mapDispatchToProps

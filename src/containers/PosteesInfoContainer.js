@@ -7,11 +7,11 @@ class PosteesInfoContainer extends Component{
 
   returnStyledStatus = (status) => {
     switch(status){
-      case "open":
+      case "OPEN":
         return(<font color="green">{status.toUpperCase()}</font>)
-      case "completed":
+      case "COMPLETED":
           return(<font color="red">{status.toUpperCase()}</font>)
-      case "pending":
+      case "PENDING":
           return(<font color="orange">{status.toUpperCase()}</font>)
       default:
           return(<font color="blue">{status.toUpperCase()}</font>)
