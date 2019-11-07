@@ -118,6 +118,15 @@ const getPosts = () => dispatch => {
       });
   };
 
+  const deletePost = post => dispatch => {
+    fetch(`http://localhost:3000/posts/${post.id}`, {
+      method: 'DELETE',
+    }).then(res => {
+      dispatch(getPosts())
+    })
+    
+  }
+
   const updatePost = post => dispatch => {
     const config = {
       method: 'PATCH',
@@ -141,6 +150,7 @@ const getPosts = () => dispatch => {
     getPosts,
     sendPost,
     clearPost,
+    deletePost,
     updatePost,
     switchFormOff,
     switchFormOn,

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import PostForm from '../components/home_components/PostForm';
+import Actions from '../Redux/actions';
+
 
 class PosteesInfoContainer extends Component{
 
@@ -19,15 +20,19 @@ class PosteesInfoContainer extends Component{
     }
   }
 
+  handleDeletePost = (post) => {
+    return(this.props.deletePost(post))
+  }
+
   givePermissions = (post) => {
     return(this.props.user.id === post.id? 
       <>
-        <p onClick={()=>this.switchOnFormAndEdit(post)} className="card-footer-item">Edit</p>
-        <button className="card-footer-item">Delete</button>
+        <button onClick={()=>this.switchOnFormAndEdit(post)} className="card-footer-item" style={{color:"orange"}}>Edit</button>
+        <button onClick={()=>this.handleDeletePost(post)}className="card-footer-item" style={{color:"red"}}>Delete</button>
     </>
     :
     <>
-        <button href="#" className="card-footer-item">Help Driver</button>
+        <button className="card-footer-item" style={{color:"green"}}>Help Driver</button>
     </>
     )
   }
@@ -37,10 +42,6 @@ class PosteesInfoContainer extends Component{
     return(<><PostForm/></>)
   }
 
-  switchOnFormAndEdit = (post) => {
-    // switchForm()
-    
-  }
 
     render(){
         return(
@@ -78,8 +79,8 @@ class PosteesInfoContainer extends Component{
 }
 
 const mapDispatchToProps = {
-    // persistUserFromAPI: Actions.persistUserFromAPI,
-    // logoutUser: Actions.logoutUser
+    deletePost: Actions.deletePost,
+
   };
   
   const mapStateToProps = (state)=> {

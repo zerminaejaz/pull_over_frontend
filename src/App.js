@@ -57,7 +57,7 @@ class App extends Component {
 const mapDispatchToProps = {
   persistUserFromAPI: Actions.persistUserFromAPI,
   logoutUser: Actions.logoutUser
-};
+}
 
 const mapStateToProps = (state)=> {
   return {user: state.user}
