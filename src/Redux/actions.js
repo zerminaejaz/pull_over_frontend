@@ -125,13 +125,14 @@ const getPosts = () => dispatch => {
     })
   }
 
-  const updatePost = post => dispatch => {
+  const updatePost = (post,newPostData) => dispatch => {
+    console.log("Before patch", post)
     const config = {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(post)
+      body: JSON.stringify(newPostData)
     };
     fetch(`http://localhost:3000/posts/${post.id}`, config)
       .then(r => r.json())

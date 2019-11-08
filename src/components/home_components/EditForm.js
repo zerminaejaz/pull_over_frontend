@@ -12,7 +12,7 @@ class EditForm extends Component{
     case: this.props.post.case,
     status: this.props.post.status,
     latitude: this.props.post.latitude,
-    longitude: this.props.post.longitude
+    longitude: this.props.post.longitude,
   }
 
 
@@ -31,8 +31,9 @@ class EditForm extends Component{
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.updatePost(this.state)
-    this.props.updatePostInState(this.state)
+    this.props.updatePost(this.props.post,this.state)
+    this.props.getPosts()
+    this.props.updatePostInState(this.state) //get the post id
   }
 
   setLocationInState = () => { 
@@ -52,6 +53,7 @@ class EditForm extends Component{
 
     render(){
       return (<>
+      <div style={{padding: "50px"}}>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="price">Price</label>
           <div className="control">
@@ -84,12 +86,14 @@ class EditForm extends Component{
             <button onClick={this.closeEditForm} className="button is-danger">Close</button>
           </div>
       </form>
+      </div>
       </>
       )
     }
 }
 const mapDispatchToProps = {
-    updatePost: Actions.updatePost
+    updatePost: Actions.updatePost,
+    getPosts: Actions.getPosts
   };
   
   const mapStateToProps = (state)=> {
