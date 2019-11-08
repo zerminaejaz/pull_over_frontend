@@ -21,11 +21,13 @@ class PosteesInfoContainer extends Component{
   }
 
   handleDeletePost = (post) => {
-    return(this.props.deletePost(post))
+   this.props.deletePost(post)
+  
   }
 
   givePermissions = (post) => {
-    return(this.props.user.id === post.id? 
+   
+    return(this.props.user.id === post.user.id? 
       <>
         <button onClick={()=>this.switchOnFormAndEdit(post)} className="card-footer-item" style={{color:"orange"}}>Edit</button>
         <button onClick={()=>this.handleDeletePost(post)}className="card-footer-item" style={{color:"red"}}>Delete</button>
@@ -79,8 +81,7 @@ class PosteesInfoContainer extends Component{
 }
 
 const mapDispatchToProps = {
-    deletePost: Actions.deletePost,
-
+    deletePost: Actions.deletePost
   };
   
   const mapStateToProps = (state)=> {
