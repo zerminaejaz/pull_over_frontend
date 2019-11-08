@@ -1,24 +1,20 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../../Redux/actions';
 import "./components.css"
 
-class PostForm extends Component{
+class EditForm extends Component{
 
   state = {
-    user: null,
-    price: 0,
-    description: "",
-    case: "",
-    status: "",
-    latitude: "",
-    longitude: ""
+    user: this.props.user,
+    price: this.props.post.price,
+    description: this.props.post.description,
+    case: this.props.post.case,
+    status: this.props.post.status,
+    latitude: this.props.post.latitude,
+    longitude: this.props.post.longitude
   }
 
-  updatePost = (post) => {
-    this.props.updatePost(post)
-    
-  }
 
   inputChanged = (event) => {
     if(event.target.name === "status"){
@@ -35,7 +31,8 @@ class PostForm extends Component{
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.createPost(this.state)
+    this.props.updatePost(this.state)
+    this.props.updatePostInState(this.state)
   }
 
   setLocationInState = () => { 
@@ -49,10 +46,13 @@ class PostForm extends Component{
    })
   }
 
+  closeEditForm = () => {
+    this.props.editFormSwitch()
+  }
+
     render(){
       return (<>
-      { !this.state.latitude ? this.setLocationInState(): console.log("No Location")}
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="price">Price</label>
           <div className="control">
             <input className="input" name="price" onChange={this.inputChanged} type="number" value={this.state.price}/>
@@ -73,35 +73,30 @@ class PostForm extends Component{
           </div>
 
           <div className="field">
-            <label className="status">Status</label>
+            <label className="status">Status [open, pending, completed]</label>
             <div className="control">
               <input className="input" name="status" onChange={this.inputChanged} type="text" value={this.state.status}/>
             </div>
           </div>
 
-
           <div className="control is-centered">
             <button type="submit" className="button is-primary">Submit</button>
+            <button onClick={this.closeEditForm} className="button is-danger">Close</button>
           </div>
       </form>
       </>
       )
     }
 }
-
 const mapDispatchToProps = {
-    createPost: Actions.createPost,
-    switchFormOff: Actions.switchFormOff
+    updatePost: Actions.updatePost
   };
   
   const mapStateToProps = (state)=> {
-    return {user: state.user,
-      posts: state.posts,
-      post: state.post,
-      }
+    return {user: state.user}
   }
   
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(PostForm);
+  )(EditForm);
