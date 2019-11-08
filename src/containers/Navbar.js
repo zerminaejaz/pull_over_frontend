@@ -4,6 +4,9 @@ import Actions from '../Redux/actions';
 
 class Navbar extends Component{
 
+  handleLogout = ()  => {
+    this.props.logoutUser()
+  }
     render(){
         return(
 
@@ -15,7 +18,7 @@ class Navbar extends Component{
                 <h1>{this.props.user.username}</h1>
               </div>
               <div className="column">
-                    <button onClick={this.handleLogOut}>Log Out</button>
+                    <button onClick={this.handleLogout}>Log Out</button>
               </div>
             </div>
        )

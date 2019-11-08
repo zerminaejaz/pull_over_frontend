@@ -6,8 +6,7 @@ const setUserAction = userObj => ({
 });
 
 const clearUserAction = () => ({
-  type: 'CLEAR_USER',
-  payload: {}
+  type: 'CLEAR_USER'
 });
 
 const updatePostAction= (post) => ({

@@ -6,7 +6,6 @@ export default (state={}, { type, payload }) => {
         }
       case 'CLEAR_USER':
         return {
-          user: null
         }
       case "SET_USER_LOCATION":{
         return{
