@@ -4,6 +4,7 @@ import Actions from '../Redux/actions';
 import PosteesInfoContainer from './PosteesInfoContainer';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import PostForm from '../components/home_components/PostForm';
+import EditForm from '../components/home_components/EditForm';
 
 
 class HomeContainer extends Component{
@@ -18,6 +19,7 @@ class HomeContainer extends Component{
     },
     clickedPost: null,
     formSwitch: false,
+    editFormSwitch: false,
     posts: []
   };
 
@@ -84,12 +86,32 @@ class HomeContainer extends Component{
     this.props.deletePost(post)
   }
 
- handleMarkerClick = (post) => {
+  editFormSwitch = () => {
+    this.setState({
+      editFormSwitch: !this.state.editFormSwitch
+    })
+  }
+
+  
+  handleMarkerClick = (post) => {
     this.setState({
       formSwitch: false,
+      editFormSwitch:false,
       clickedPost: post
     })
-    // console.log("Switch: ", this.state.formSwitch)
+    
+  }
+
+  updatePostInState = (post) => {
+    this.setState({
+      clickedPost: post
+    })
+  }
+
+  renderEditForm = () => {
+    return(
+      <EditForm post = {this.state.clickedPost} updatePostInState={this.updatePostInState} editFormSwitch={this.editFormSwitch} user={this.props.user} />
+    )
   }
 
   renderForm = () => {
@@ -157,9 +179,15 @@ class HomeContainer extends Component{
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
                   <button className="button is-link" onClick={this.createPost}>Create Post</button>
-                {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? <PosteesInfoContainer clickedPost={this.state.clickedPost} deletePost={this.deletePost} formSwitch={this.state.formSwitch}/> : null}
               </div>
-              
+            </div>
+
+            <div className = "columns is-mobile is-centered has-text-centered">
+              <div className = "column">
+                {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? 
+                <PosteesInfoContainer key={this.state.clickedPost} editFormSwitch={this.editFormSwitch} clickedPost={this.state.clickedPost} deletePost={this.deletePost} formSwitch={this.state.formSwitch}/> : null}
+              {this.state.editFormSwitch? this.renderEditForm():null}
+              </div>
             </div>
             </>
         )

@@ -22,17 +22,14 @@ class PosteesInfoContainer extends Component{
   }
 
   handleDeletePost = (post) => {
-   
    this.props.deletePost(post)
-  //  this.props.getPosts()
-  
   }
 
   givePermissions = (post) => {
    
     return(this.props.user.id === post.user.id? 
       <>
-        <button onClick={()=>this.switchOnFormAndEdit(post)} className="card-footer-item" style={{color:"orange"}}>Edit</button>
+        <button onClick={()=>this.props.editFormSwitch()} className="card-footer-item" style={{color:"orange"}}>Edit</button>
         <button onClick={()=>this.handleDeletePost(post)}className="card-footer-item" style={{color:"red"}}>Delete</button>
     </>
     :

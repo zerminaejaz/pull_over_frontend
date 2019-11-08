@@ -123,7 +123,6 @@ const getPosts = () => dispatch => {
     }).then(res => {
       dispatch(getPosts())
     })
-    
   }
 
   const updatePost = post => dispatch => {
