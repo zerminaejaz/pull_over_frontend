@@ -6,6 +6,7 @@ import Actions from '../Redux/actions';
 
 class PosteesInfoContainer extends Component{
 
+
   returnStyledStatus = (status) => {
     let formattedStatus = status.toUpperCase()
     switch(formattedStatus){
@@ -21,7 +22,9 @@ class PosteesInfoContainer extends Component{
   }
 
   handleDeletePost = (post) => {
+   
    this.props.deletePost(post)
+  //  this.props.getPosts()
   
   }
 
@@ -81,7 +84,8 @@ class PosteesInfoContainer extends Component{
 }
 
 const mapDispatchToProps = {
-    deletePost: Actions.deletePost
+    // deletePost: Actions.deletePost
+    // getPosts: Actions.getPosts
   };
   
   const mapStateToProps = (state)=> {

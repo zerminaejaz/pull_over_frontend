@@ -17,12 +17,27 @@ class HomeContainer extends Component{
       zoom: 15
     },
     clickedPost: null,
-    formSwitch: false
+    formSwitch: false,
+    posts: []
   };
 
   //LifeCycles
   componentDidMount = () => {
-    this.props.getPosts()
+    fetch('http://localhost:3000/posts', {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(r => r.json())
+      .then(postsArray => {
+        console.log("Fetch", postsArray)
+        this.setState({
+          posts: postsArray
+        })
+        console.log("Fetched", this.state.posts)
+      });
+          
+   
   }
 
   //helper methods
@@ -59,6 +74,16 @@ class HomeContainer extends Component{
    })
   }
 
+  deletePost = (post) => {
+   
+    let newArray = this.state.posts.filter(postObj => postObj.id !== post.id) //squiggly brackets you have to return
+    this.setState({
+      posts: newArray,
+      clickedPost: null
+    })
+    this.props.deletePost(post)
+  }
+
  handleMarkerClick = (post) => {
     this.setState({
       formSwitch: false,
@@ -92,9 +117,11 @@ class HomeContainer extends Component{
       <ReactMapGL
       {...this.state.viewport} onViewportChange={this.setView} 
       mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
-        {this.props.posts.map(post => (
-          this.renderMarker(post)
-        ))}
+        {this.state.posts.map(post => {
+         
+          return this.renderMarker(post)
+        }
+        )}
         {this.renderPopUp()}
       </ReactMapGL>
     )
@@ -124,13 +151,13 @@ class HomeContainer extends Component{
             {/* <br></br><br></br> */}
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
-                {this.props.posts ? this.showMap() : null}
+                {this.state.posts.length > 0 ? this.showMap() : null}
               </div>
             </div>
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
                   <button className="button is-link" onClick={this.createPost}>Create Post</button>
-                {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? <PosteesInfoContainer clickedPost={this.state.clickedPost} formSwitch={this.state.formSwitch}/> : null}
+                {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? <PosteesInfoContainer clickedPost={this.state.clickedPost} deletePost={this.deletePost} formSwitch={this.state.formSwitch}/> : null}
               </div>
               
             </div>
@@ -144,6 +171,7 @@ const mapDispatchToProps = {
     getPosts: Actions.getPosts,
     sendPost: Actions.sendPost,
     clearPost: Actions.clearPost,
+    deletePost: Actions.deletePost,
     switchFormOn: Actions.switchFormOn,
     switchFormOff: Actions.switchFormOff,
     setUserLocation: Actions.setUserLocation
