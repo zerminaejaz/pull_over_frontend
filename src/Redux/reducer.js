@@ -32,13 +32,14 @@ export default (state={}, { type, payload }) => {
           post: payload,
           ...state
         }
-      }     
+      }    
       case "UPDATE_POST":
         return {
           ...state,
           post: payload,
           ...state
         }
+
       case "SWITCH_FORM_ON":
         return {
           ...state,
