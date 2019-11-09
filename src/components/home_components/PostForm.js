@@ -15,9 +15,12 @@ class PostForm extends Component{
     longitude: ""
   }
 
+  componentDidMount = () => {
+    { !this.state.latitude ? this.setLocationInState(): console.log("No Location")}
+  }
+
   updatePost = (post) => {
     this.props.updatePost(post)
-    
   }
 
   inputChanged = (event) => {
@@ -35,7 +38,9 @@ class PostForm extends Component{
 
   handleSubmit = (event) => {
     event.preventDefault()
+    this.props.formSwitch()
     this.props.createPost(this.state)
+    this.props.addPost(this.state)
   }
 
   setLocationInState = () => { 
@@ -45,14 +50,14 @@ class PostForm extends Component{
 
    this.setState({
      latitude: floatToStr(this.props.location.latitude),
-     longitude: floatToStr(this.props.location.longitude)
+     longitude: floatToStr(this.props.location.longitude),
+     user: this.props.user
    })
   }
 
     render(){
       return (<>
-      { !this.state.latitude ? this.setLocationInState(): console.log("No Location")}
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="price">Price</label>
           <div className="control">
             <input className="input" name="price" onChange={this.inputChanged} type="number" value={this.state.price}/>

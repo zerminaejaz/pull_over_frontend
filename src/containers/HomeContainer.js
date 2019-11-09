@@ -38,7 +38,8 @@ class HomeContainer extends Component{
         })
         console.log("Fetched", this.state.posts)
       });
-          
+      
+      this.checkLocation()
    
   }
 
@@ -59,6 +60,9 @@ class HomeContainer extends Component{
         }
         this.props.setUserLocation(location)
       })
+      this.setState({
+        
+      })
     }
       else {
       console.log("Location not available")
@@ -72,12 +76,13 @@ class HomeContainer extends Component{
 
   createPost = () => {
    this.setState({
-     formSwitch: true
+     formSwitch: true,
+     editFormSwitch:false,
+     clickedPost:null
    })
   }
 
   deletePost = (post) => {
-   
     let newArray = this.state.posts.filter(postObj => postObj.id !== post.id) //squiggly brackets you have to return
     this.setState({
       posts: newArray,
@@ -89,6 +94,12 @@ class HomeContainer extends Component{
   editFormSwitch = () => {
     this.setState({
       editFormSwitch: !this.state.editFormSwitch
+    })
+  }
+
+  formSwitch  = () => {
+    this.setState({
+      formSwitch: !this.state.formSwitch
     })
   }
 
@@ -106,6 +117,14 @@ class HomeContainer extends Component{
     this.setState({
       clickedPost: post
     })
+    this.editFormSwitch()
+  }
+
+  addPost = (post) => {
+    this.setState({
+      posts: [...this.state.posts, post]
+    })
+    
   }
 
   renderEditForm = () => {
@@ -115,7 +134,7 @@ class HomeContainer extends Component{
   }
 
   renderForm = () => {
-    return(<><PostForm location={this.props.location} /></>)
+    return(<><PostForm location={this.props.location} formSwitch={this.formSwitch} posts = {this.state.posts} addPost={this.addPost} /></>)
   }
 
   renderMarker = (post) => {
@@ -169,7 +188,7 @@ class HomeContainer extends Component{
     render(){
         return(
             <>
-            {this.checkLocation()}
+ 
             {/* <br></br><br></br> */}
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
@@ -185,7 +204,7 @@ class HomeContainer extends Component{
             <div className = "columns is-mobile is-centered has-text-centered">
               <div className = "column">
                 {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? 
-                <PosteesInfoContainer key={this.state.clickedPost} editFormSwitch={this.editFormSwitch} clickedPost={this.state.clickedPost} deletePost={this.deletePost} formSwitch={this.state.formSwitch}/> : null}
+                <PosteesInfoContainer key={this.state.clickedPost} editFormSwitch={this.editFormSwitch} clickedPost={this.state.clickedPost} deletePost={this.deletePost}/> : null}
               {this.state.editFormSwitch? this.renderEditForm():null}
               </div>
             </div>

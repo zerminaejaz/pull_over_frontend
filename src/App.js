@@ -4,7 +4,6 @@ import Actions from './Redux/actions';
 import BodyContainer from './containers/BodyContainer'
 import Navbar from './containers/Navbar';
 import SignupOrLogIn from './Pages/SignupOrLogIn';
- 
 
 class App extends Component {
   

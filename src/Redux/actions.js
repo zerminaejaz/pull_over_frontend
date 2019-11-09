@@ -28,13 +28,14 @@ const setUserLocation = (locationObj) => (
   {
   type:"SET_USER_LOCATION",
   payload: locationObj
-})
+  }
+)
 
 
-const sendPost = post => dispatch => dispatch(({
+const sendPost = post => dispatch => dispatch({
   type: "SEND_POST",
   payload: post
-}))
+})
 
 const switchFormOn = () => ({
   type: "SWITCH_FORM_ON",
@@ -117,6 +118,20 @@ const getPosts = () => dispatch => {
       });
   };
 
+  const createPost = post => dispatch => {
+    const token = localStorage.token
+    debugger
+    fetch('http://localhost:3000/posts', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : `bearer ${token}`
+        },
+        body: JSON.stringify(post)
+    }).then(res => res.json())
+    .then(console.log(post))
+  }
+
   const deletePost = post => dispatch => {
     fetch(`http://localhost:3000/posts/${post.id}`, {
       method: 'DELETE',
@@ -147,6 +162,7 @@ const getPosts = () => dispatch => {
     createNewUserToDB,
     logoutUser,
     getPosts,
+    createPost,
     sendPost,
     clearPost,
     deletePost,
