@@ -6,7 +6,7 @@ import "./components.css"
 class PostForm extends Component{
 
   state = {
-    user: null,
+    user_id: null,
     price: 0,
     description: "",
     case: "",
@@ -16,7 +16,26 @@ class PostForm extends Component{
   }
 
   componentDidMount = () => {
-    { !this.state.latitude ? this.setLocationInState(): console.log("No Location")}
+
+    this.setState({
+      latitude: this.props.latitude.toString(),
+      longitude: this.props.longitude.toString(),
+      user_id: this.props.user.id
+    })
+  }
+
+  checkLocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.setState({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        }) 
+      })
+    }
+      else {
+      console.log("Location not available")
+    }
   }
 
   updatePost = (post) => {
@@ -39,23 +58,16 @@ class PostForm extends Component{
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.formSwitch()
+    debugger
     this.props.createPost(this.state)
-    this.props.addPost(this.state)
+    this.props.setPosts()
+    // this.props.addPost(this.props.post) //get the object after creation
   }
 
-  setLocationInState = () => { 
-    function floatToStr(num) {
-      return num.toString().indexOf('.') === -1 ? num.toFixed(1) : num.toString();
-    }
-
-   this.setState({
-     latitude: floatToStr(this.props.location.latitude),
-     longitude: floatToStr(this.props.location.longitude),
-     user: this.props.user
-   })
-  }
 
     render(){
+
+      console.log("We are:", this.state.user_id)
       return (<>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="price">Price</label>

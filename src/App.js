@@ -23,16 +23,18 @@ class App extends Component {
   }
 
   showHomePage = () => {
-    return(
-      <div className="container is-fluid">
-        <div className = "columns is-full"></div>
-          <div className="column is-full">
+    return(<>
+      {/* <div className="container is-fluid"> */}
+         {/* <div className = "columns is-full"></div> */}
+           {/* <div className="column is-full"> */}
             <Navbar/>
-          </div>
-          <div className="column is-full">
+           {/* </div> */}
+           {/* <div className="column is-full"> */}
             <BodyContainer/>  
-          </div>
-      </div>)
+           {/* </div> */}
+       {/* </div> */}
+      </>
+      )
   }
 
   checkForUser = () => {
@@ -55,7 +57,8 @@ class App extends Component {
 
 const mapDispatchToProps = {
   persistUserFromAPI: Actions.persistUserFromAPI,
-  logoutUser: Actions.logoutUser
+  logoutUser: Actions.logoutUser,
+  fetchUserLocation: Actions.fetchUserLocation 
 }
 
 const mapStateToProps = (state)=> {

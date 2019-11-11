@@ -26,10 +26,34 @@ const logoutUser = () => dispatch => {
 
 const setUserLocation = (locationObj) => (
   {
-  type:"SET_USER_LOCATION",
-  payload: locationObj
-  }
+    type: "SET_USER_LOCATION",
+    payload: locationObj
+    }
 )
+
+const fetchUserLocation = () => dispatch => {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(position => {
+      // this.setState({
+      //   viewport:{
+      //     ...this.state.viewport,
+      //     latitude: position.coords.latitude,
+      //     longitude: position.coords.longitude
+      //   }
+      // }) 
+      const location = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }
+      debugger
+      dispatch(setUserLocation(location))
+    })
+  }
+    else {
+    console.log("Location not available")
+  }
+
+}
 
 
 const sendPost = post => dispatch => dispatch({
@@ -56,14 +80,15 @@ const clearPost = () => ({
   
 // FETCH
 const getPosts = () => dispatch => {
-  // console.log("getPosts/actions")
-    fetch('http://localhost:3000/posts', {
+ 
+   fetch('http://localhost:3000/posts', {
       headers: {
         'Content-Type': 'application/json',
       }
     })
       .then(r => r.json())
       .then(postsArray => {
+        console.log(postsArray)
         dispatch(holdPosts(postsArray));
       });
           
@@ -78,7 +103,7 @@ const getPosts = () => dispatch => {
     })
       .then(r => r.json())
       .then(user => {
-        // console.log(user)
+
         dispatch(setUserAction(user));
       });
 
@@ -119,17 +144,21 @@ const getPosts = () => dispatch => {
   };
 
   const createPost = post => dispatch => {
-    const token = localStorage.token
     debugger
+   
     fetch('http://localhost:3000/posts', {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization' : `bearer ${token}`
-        },
-        body: JSON.stringify(post)
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accepts' : 'application/json'
+      },
+      body: JSON.stringify(post)
     }).then(res => res.json())
-    .then(console.log(post))
+    .then(post=>{
+      debugger
+      dispatch(sendPost(post))})
+   
+
   }
 
   const deletePost = post => dispatch => {
@@ -169,5 +198,5 @@ const getPosts = () => dispatch => {
     updatePost,
     switchFormOff,
     switchFormOn,
-    setUserLocation
+    fetchUserLocation
   };

@@ -8,6 +8,7 @@ export default (state={}, { type, payload }) => {
         return {
         }
       case "SET_USER_LOCATION":{
+        debugger
         return{
           ...state,
           location: payload,

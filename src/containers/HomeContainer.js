@@ -25,22 +25,8 @@ class HomeContainer extends Component{
 
   //LifeCycles
   componentDidMount = () => {
-    fetch('http://localhost:3000/posts', {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-      .then(r => r.json())
-      .then(postsArray => {
-        console.log("Fetch", postsArray)
-        this.setState({
-          posts: postsArray
-        })
-        console.log("Fetched", this.state.posts)
-      });
-      
-      this.checkLocation()
-   
+    this.checkLocation()
+    this.props.getPosts()
   }
 
   //helper methods
@@ -54,14 +40,6 @@ class HomeContainer extends Component{
             longitude: position.coords.longitude
           }
         }) 
-        const location = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        }
-        this.props.setUserLocation(location)
-      })
-      this.setState({
-        
       })
     }
       else {
@@ -86,7 +64,8 @@ class HomeContainer extends Component{
     let newArray = this.state.posts.filter(postObj => postObj.id !== post.id) //squiggly brackets you have to return
     this.setState({
       posts: newArray,
-      clickedPost: null
+      clickedPost: null,
+      editFormSwitch: false
     })
     this.props.deletePost(post)
   }
@@ -120,11 +99,18 @@ class HomeContainer extends Component{
     this.editFormSwitch()
   }
 
+  //check if this is needed
   addPost = (post) => {
     this.setState({
       posts: [...this.state.posts, post]
     })
-    
+  }
+
+  setPosts = () => {
+    let newArray = this.props.getPosts()
+    this.setState({
+      posts: newArray
+    })
   }
 
   renderEditForm = () => {
@@ -134,7 +120,12 @@ class HomeContainer extends Component{
   }
 
   renderForm = () => {
-    return(<><PostForm location={this.props.location} formSwitch={this.formSwitch} posts = {this.state.posts} addPost={this.addPost} /></>)
+    let location = {
+      latitude: this.state.latitude,
+      longitude: this.state.longitude
+    }
+   
+    return(<><PostForm latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} formSwitch={this.formSwitch} setPosts = {this.setPosts} addPost={this.addPost} /></>)
   }
 
   renderMarker = (post) => {
@@ -153,20 +144,6 @@ class HomeContainer extends Component{
     this.setState({ viewport: r })
   }
 
-  showMap = () => {
-    return(
-      <ReactMapGL
-      {...this.state.viewport} onViewportChange={this.setView} 
-      mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
-        {this.state.posts.map(post => {
-         
-          return this.renderMarker(post)
-        }
-        )}
-        {this.renderPopUp()}
-      </ReactMapGL>
-    )
-  }
 
   renderPopUp = () =>{
     if (this.props.post) {
@@ -186,13 +163,24 @@ class HomeContainer extends Component{
   }
 
     render(){
+     
         return(
             <>
- 
-            {/* <br></br><br></br> */}
+
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
-                {this.state.posts.length > 0 ? this.showMap() : null}
+              {<ReactMapGL
+                {...this.state.viewport} onViewportChange={this.setView} 
+                mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
+                  {this.props.posts && this.props.posts.length > 0?
+                    this.props.posts.map(post => {
+                      if(post.latitude && post.longitude)
+                        return this.renderMarker(post)
+                    })
+                    : null
+                  }
+                  {this.renderPopUp()}
+              </ReactMapGL>}
               </div>
             </div>
             <div className="columns is-mobile is-centered has-text-centered">
@@ -221,7 +209,7 @@ const mapDispatchToProps = {
     deletePost: Actions.deletePost,
     switchFormOn: Actions.switchFormOn,
     switchFormOff: Actions.switchFormOff,
-    setUserLocation: Actions.setUserLocation
+    fetchUserLocation: Actions.fetchUserLocation
   };
   
   const mapStateToProps = (state)=> {
