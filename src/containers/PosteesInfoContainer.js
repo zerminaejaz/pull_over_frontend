@@ -56,11 +56,11 @@ class PosteesInfoContainer extends Component{
               <p className="card-header-title">
                 ${this.props.clickedPost.price}
               </p>
-              <a href="#" className="card-header-icon" aria-label="more options">
+              {/* <a href="#" className="card-header-icon" aria-label="more options">
                 <span className="icon">
                   <i className="fas fa-angle-down" aria-hidden="true"></i>
                 </span>
-              </a>
+              </a> */}
             </header>
             <div className="card-content">
               <div className="content">

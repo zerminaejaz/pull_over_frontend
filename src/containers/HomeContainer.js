@@ -145,22 +145,24 @@ class HomeContainer extends Component{
   }
 
 
-  renderPopUp = () =>{
-    if (this.props.post) {
-    return(           <Popup
-        latitude={parseFloat(this.props.post.latitude)}
-        longitude={parseFloat(this.props.post.longitude)}
-        onClose={() => {
-          this.closePopup();
-        }}
-      >
-        <div>
-          <h2>${this.props.post.price}</h2>
-        </div>
-      </Popup>)
-    }
-    return null
-  }
+  // renderPopUp = (post) =>{
+  //   if (this.props.post && this.props.post.id) {
+  //   return(
+  //     <Popup
+  //         latitude={parseFloat(post.latitude)}
+  //         longitude={parseFloat(post.longitude)}
+  //         onClose={() => {
+  //           this.closePopup();
+  //         }}
+  //       >
+  //         <div>
+  //           <h2>${this.props.post.price}</h2>
+  //         </div>
+  //       </Popup>
+  //   )
+  //   }
+  //   return null
+  // }
 
     render(){
      
@@ -179,7 +181,6 @@ class HomeContainer extends Component{
                     })
                     : null
                   }
-                  {this.renderPopUp()}
               </ReactMapGL>}
               </div>
             </div>

@@ -58,7 +58,6 @@ class PostForm extends Component{
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.formSwitch()
-    debugger
     this.props.createPost(this.state)
     this.props.setPosts()
     // this.props.addPost(this.props.post) //get the object after creation
@@ -90,7 +89,7 @@ class PostForm extends Component{
           </div>
 
           <div className="field">
-            <label className="status">Status</label>
+            <label className="status">Status [OPEN, PENDING, COMPLETE]</label>
             <div className="control">
               <input className="input" name="status" onChange={this.inputChanged} type="text" value={this.state.status}/>
             </div>
