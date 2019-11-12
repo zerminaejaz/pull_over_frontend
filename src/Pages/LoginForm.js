@@ -22,7 +22,6 @@ class LoginForm extends Component {
   }
 
   handleSwitch = () => {
-    // debugger
     this.props.switchForm()
   }
 
