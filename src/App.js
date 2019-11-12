@@ -10,6 +10,7 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.token) {
       this.props.persistUserFromAPI();
+      this.showHomePage()
     }
   }
 
@@ -39,6 +40,7 @@ class App extends Component {
 
   checkForUser = () => {
     if (this.props.user && this.props.user.id){
+
       return(this.showHomePage())
     }
     else{

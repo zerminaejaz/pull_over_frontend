@@ -3,64 +3,30 @@ import { connect } from 'react-redux';
 import Actions from '../../Redux/actions';
 import "./components.css"
 
-class PostForm extends Component{
+class UserCreateForm extends Component{
 
   state = {
-    user_id: null,
-    price: 0,
-    description: "",
-    case: "",
-    status: "",
-    latitude: "",
-    longitude: ""
+    username: "",
+    password: "",
+    picture: "",
+    number: ""
   }
 
   componentDidMount = () => {
-
-    this.setState({
-      latitude: this.props.latitude.toString(),
-      longitude: this.props.longitude.toString(),
-      user_id: this.props.user.id
-    })
-
-  }
-
-  checkLocation = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.setState({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-        }) 
-      })
-    }
-      else {
-      console.log("Location not available")
-    }
-  }
-
-  updatePost = (post) => {
-    this.props.updatePost(post)
   }
 
   inputChanged = (event) => {
-    if(event.target.name === "status"){
-      this.setState({
-        [event.target.name]: event.target.value.toUpperCase()
-      })
-    }
-    else{
-      this.setState({
+
+    this.setState({
         [event.target.name]: event.target.value
-      })
-    }
+    })
+    
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.formSwitch()
-    this.props.createPost(this.state)
-    // this.props.setPosts() //COMMENTED OUT TUESDAY
+    this.props.createNewUserToDB(this.state)
+    
   }
 
 
@@ -105,18 +71,14 @@ class PostForm extends Component{
 }
 
 const mapDispatchToProps = {
-    createPost: Actions.createPost,
-    switchFormOff: Actions.switchFormOff
+    createNewUserToDB: Actions.createNewUserToDB
   };
   
   const mapStateToProps = (state)=> {
-    return {user: state.user,
-      posts: state.posts,
-      post: state.post,
-      }
+    return {user: state.user}
   }
   
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(PostForm);
+  )(UserCreateForm);

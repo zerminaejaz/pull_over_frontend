@@ -67,7 +67,8 @@ class HomeContainer extends Component{
       clickedPost: null,
       editFormSwitch: false
     })
-    this.props.deletePost(post)
+      //tuesday
+    // this.props.deletePost(post)
   }
 
   editFormSwitch = () => {
@@ -124,7 +125,7 @@ class HomeContainer extends Component{
       latitude: this.state.latitude,
       longitude: this.state.longitude
     }
-   
+
     return(<><PostForm latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} formSwitch={this.formSwitch} setPosts = {this.setPosts} addPost={this.addPost} /></>)
   }
 
@@ -143,26 +144,6 @@ class HomeContainer extends Component{
   setView = r => {
     this.setState({ viewport: r })
   }
-
-
-  // renderPopUp = (post) =>{
-  //   if (this.props.post && this.props.post.id) {
-  //   return(
-  //     <Popup
-  //         latitude={parseFloat(post.latitude)}
-  //         longitude={parseFloat(post.longitude)}
-  //         onClose={() => {
-  //           this.closePopup();
-  //         }}
-  //       >
-  //         <div>
-  //           <h2>${this.props.post.price}</h2>
-  //         </div>
-  //       </Popup>
-  //   )
-  //   }
-  //   return null
-  // }
 
     render(){
      

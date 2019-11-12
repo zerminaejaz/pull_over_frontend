@@ -34,13 +34,6 @@ const setUserLocation = (locationObj) => (
 const fetchUserLocation = () => dispatch => {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(position => {
-      // this.setState({
-      //   viewport:{
-      //     ...this.state.viewport,
-      //     latitude: position.coords.latitude,
-      //     longitude: position.coords.longitude
-      //   }
-      // }) 
       const location = {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
@@ -52,7 +45,6 @@ const fetchUserLocation = () => dispatch => {
     else {
     console.log("Location not available")
   }
-
 }
 
 
@@ -144,7 +136,7 @@ const getPosts = () => dispatch => {
   };
 
   const createPost = post => dispatch => {
-    debugger
+ 
    
     fetch('http://localhost:3000/posts', {
       method: "POST",
@@ -155,7 +147,7 @@ const getPosts = () => dispatch => {
       body: JSON.stringify(post)
     }).then(res => res.json())
     .then(post=>{
-      debugger
+     
       dispatch(sendPost(post))})
    
 

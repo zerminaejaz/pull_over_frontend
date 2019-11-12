@@ -8,50 +8,43 @@ export default (state={}, { type, payload }) => {
         return {
         }
       case "SET_USER_LOCATION":{
-        debugger
         return{
           ...state,
-          location: payload,
-          ...state
+          location: payload
         }
       }
       case "CLEAR_POST":
         return {
           ...state,
-          post: null,
-          ...state
+          post: null
           }
       case 'HOLD_POSTS':
         return {
           ...state,
-          posts: payload,
-          ...state
+          posts: payload
         }
       case "SEND_POST": {
         return {
           ...state,
-          post: payload,
-          ...state
+          posts: [...state.posts, payload],
+          post: payload
         }
       }    
       case "UPDATE_POST":
         return {
           ...state,
-          post: payload,
-          ...state
+          post: payload
         }
 
       case "SWITCH_FORM_ON":
         return {
           ...state,
-          formSwitch: payload,
-          ...state
+          formSwitch: payload
         }
       case "SWITCH_FORM_OFF":
         return {
           ...state,
           formSwitch: payload,
-          ...state
         }
       default:
         return state;
