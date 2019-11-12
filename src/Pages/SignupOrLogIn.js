@@ -10,26 +10,17 @@ class SignupOrLogIn extends Component {
         signUpSwitch: false
     };
     
+
     switchForm = () => {
         this.setState({
             signUpSwitch: !this.state.signUpSwitch
         })
-        console.log("Switchstate:", this.state.signUpSwitch)
     }
 
-
-
-    renderLogin = () => {
-        if (this.state.signUpSwitch) {
-            return (<Form switchForm={this.switchForm}/>)
-        } else {
-            return(<LoginForm switchForm={this.switchForm}/>)
-        }
-    }
 
     render(){
         return(<>
-            {this.renderLogin()}
+            {this.state.signUpSwitch ? <Form switchForm={this.switchForm}/>:<LoginForm switchForm={this.switchForm}/>}
         </>)
     }
     

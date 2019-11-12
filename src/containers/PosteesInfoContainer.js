@@ -80,11 +80,6 @@ class PosteesInfoContainer extends Component{
             }
 }
 
-const mapDispatchToProps = {
-    // deletePost: Actions.deletePost
-    // getPosts: Actions.getPosts
-  };
-  
   const mapStateToProps = (state)=> {
     return {user: state.user,
     post: state.post}
@@ -92,5 +87,5 @@ const mapDispatchToProps = {
   
   export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    null,
   )(PosteesInfoContainer);

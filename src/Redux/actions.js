@@ -98,7 +98,6 @@ const getPosts = () => dispatch => {
     })
       .then(r => r.json())
       .then(user => {
-
         dispatch(setUserAction(user));
       });
 
@@ -123,19 +122,22 @@ const getPosts = () => dispatch => {
   };
   
   const createNewUserToDB = userData => dispatch => {
-    debugger
+ 
     const config = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
       body: JSON.stringify(userData)
     };
     fetch('http://localhost:3000/users', config)
       .then(r => r.json())
       .then(data => {
+      
         dispatch(setUserAction(data.user));
         localStorage.token = data.token;
+        localStorage.id = data.user.id
       });
   };
 
