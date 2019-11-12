@@ -68,8 +68,11 @@ const clearPost = () => ({
   payload: null
 })
 
+const deletePostAction = (array) => ({
+  type: "DELETE_POST",
+  payload: array
+})
 
-  
 // FETCH
 const getPosts = () => dispatch => {
  
@@ -120,6 +123,7 @@ const getPosts = () => dispatch => {
   };
   
   const createNewUserToDB = userData => dispatch => {
+    debugger
     const config = {
       method: 'POST',
       headers: {
@@ -153,11 +157,11 @@ const getPosts = () => dispatch => {
 
   }
 
-  const deletePost = post => dispatch => {
+  const deletePost = (post, array) => dispatch => {
     fetch(`http://localhost:3000/posts/${post.id}`, {
       method: 'DELETE',
     }).then(res => {
-      dispatch(getPosts())
+      dispatch(deletePostAction(array))
     })
   }
 

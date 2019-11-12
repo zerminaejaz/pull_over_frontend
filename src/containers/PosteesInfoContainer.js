@@ -22,7 +22,7 @@ class PosteesInfoContainer extends Component{
   }
 
   handleDeletePost = (post) => {
-   this.props.deletePost(post)
+    this.props.deletePost(post)
   }
 
   givePermissions = (post) => {

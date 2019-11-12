@@ -15,6 +15,7 @@ class Form extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.createNewUserToDB(this.state);
+    this.props.switchForm()
   };
 
   handleSwitch = () => {
@@ -65,7 +66,7 @@ class Form extends Component {
   </div>
 
   <div className="field">
-    <label className="label">Phone Number (5169990000)</label>
+    <label className="label">Phone Number (15169993333)</label>
     <div className="control has-icons-right">
       <input className="input" type="text"value={this.state.number}
             name="number"
@@ -74,7 +75,7 @@ class Form extends Component {
   </div>
 
   <div className="has-text-centered">
-    <a onSubmit={e => this.handleSignUp(e, this.state)}className="button is-vcentered is-primary is-outlined ">Sign Up</a>
+    <a onClick={e => this.handleSubmit(e, this.state)}className="button is-vcentered is-primary is-outlined ">Sign Up</a>
   </div>
   <div className="has-text-centered">
     <br></br>
@@ -89,6 +90,7 @@ class Form extends Component {
 
 const mapDispatchToProps = {
   createNewUserToDB: Actions.createNewUserToDB
+  
 };
 export default connect(
   null,

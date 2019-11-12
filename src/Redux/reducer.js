@@ -18,6 +18,12 @@ export default (state={}, { type, payload }) => {
           ...state,
           post: null
           }
+      case "DELETE_POST":
+        return {
+          ...state, 
+          posts: payload,
+          post: null
+        }
       case 'HOLD_POSTS':
         return {
           ...state,

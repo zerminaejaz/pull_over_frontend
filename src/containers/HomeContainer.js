@@ -61,12 +61,13 @@ class HomeContainer extends Component{
   }
 
   deletePost = (post) => {
-    let newArray = this.state.posts.filter(postObj => postObj.id !== post.id) //squiggly brackets you have to return
+    let newArray = this.props.posts.filter(postObj => postObj.id !== post.id) //squiggly brackets you have to return
     this.setState({
-      posts: newArray,
+      // posts: newArray,
       clickedPost: null,
       editFormSwitch: false
     })
+    this.props.deletePost(post, newArray)
       //tuesday
     // this.props.deletePost(post)
   }
@@ -100,13 +101,6 @@ class HomeContainer extends Component{
     this.editFormSwitch()
   }
 
-  //check if this is needed
-  addPost = (post) => {
-    this.setState({
-      posts: [...this.state.posts, post]
-    })
-  }
-
   setPosts = () => {
     let newArray = this.props.getPosts()
     this.setState({
@@ -126,7 +120,7 @@ class HomeContainer extends Component{
       longitude: this.state.longitude
     }
 
-    return(<><PostForm latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} formSwitch={this.formSwitch} setPosts = {this.setPosts} addPost={this.addPost} /></>)
+    return(<><PostForm latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} formSwitch={this.formSwitch} setPosts = {this.setPosts} /></>)
   }
 
   renderMarker = (post) => {
