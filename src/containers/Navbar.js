@@ -7,27 +7,54 @@ class Navbar extends Component{
   handleLogout = ()  => {
     this.props.logoutUser()
   }
-    render(){
-        return(
 
-            <div className="columns is-mobile is-centered has-text-centered">
-              <div className="column">
-                <img src={this.props.user.picture} alt="profile" height="100px" width="100px"></img>
+  changePageTo = (pageName) => {
+    this.props.changePageTo(pageName)
+  }
+    render(){
+        return(<>
+            <nav className="navbar" role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+            <a onClick={()=>this.changePageTo("Profile")}>
+                <img src={this.props.user.picture} width="112" height="28" style={{borderRadius:"100%", padding:"10px"}}/>
+            </a>
+           
+              <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div id="navbarBasicExample" className="navbar-menu">
+              <div className="navbar-start">
+                <a onClick={()=>this.changePageTo("Profile")} className="navbar-item">
+                  {this.props.user.username}
+                </a>
+                <a onClick={()=>this.changePageTo("MyReviewsContainer")}className="navbar-item">
+                  Reviews
+                </a>
+                <a onClick={()=>this.changePageTo("MyPostsContainer")} className="navbar-item">
+                  My Posts
+                </a>
               </div>
-              <div className="column">
-                <h1>{this.props.user.username}</h1>
-              </div>
-              <div className="column">
-                    <button onClick={this.handleLogout}>Log Out</button>
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <div className="buttons">
+                    <a onClick={this.handleLogout} className="button is-link">
+                      <strong>Log Out</strong>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
+          </nav></>
        )
     }
-
 }
 const mapDispatchToProps = {
     persistUserFromAPI: Actions.persistUserFromAPI,
-    logoutUser: Actions.logoutUser
+    logoutUser: Actions.logoutUser,
+    changePageTo: Actions.changePageTo
   };
   
   const mapStateToProps = (state)=> {

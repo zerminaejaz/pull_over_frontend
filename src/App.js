@@ -25,22 +25,14 @@ class App extends Component {
 
   showHomePage = () => {
     return(<>
-      {/* <div className="container is-fluid"> */}
-         {/* <div className = "columns is-full"></div> */}
-           {/* <div className="column is-full"> */}
             <Navbar/>
-           {/* </div> */}
-           {/* <div className="column is-full"> */}
             <BodyContainer/>  
-           {/* </div> */}
-       {/* </div> */}
       </>
       )
   }
 
   checkForUser = () => {
     if (this.props.user && this.props.user.id){
-
       return(this.showHomePage())
     }
     else{

@@ -31,22 +31,12 @@ const setUserLocation = (locationObj) => (
     }
 )
 
-const fetchUserLocation = () => dispatch => {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(position => {
-      const location = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      }
-      debugger
-      dispatch(setUserLocation(location))
-    })
+const changePageTo = (pageName) => (
+  {
+    type: "PAGE_TO_RENDER",
+    payload: pageName
   }
-    else {
-    console.log("Location not available")
-  }
-}
-
+)
 
 const sendPost = post => dispatch => dispatch({
   type: "SEND_POST",
@@ -74,6 +64,21 @@ const deletePostAction = (array) => ({
 })
 
 // FETCH
+  const fetchUserLocation = () => dispatch => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const location = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        }
+        debugger
+        dispatch(setUserLocation(location))
+      })
+    }
+      else {
+      console.log("Location not available")
+    }
+  }
 const getPosts = () => dispatch => {
  
    fetch('http://localhost:3000/posts', {
@@ -142,8 +147,6 @@ const getPosts = () => dispatch => {
   };
 
   const createPost = post => dispatch => {
- 
-   
     fetch('http://localhost:3000/posts', {
       method: "POST",
       headers: {
@@ -194,6 +197,7 @@ const getPosts = () => dispatch => {
     clearPost,
     deletePost,
     updatePost,
+    changePageTo,
     switchFormOff,
     switchFormOn,
     fetchUserLocation

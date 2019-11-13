@@ -40,9 +40,9 @@ class PosteesInfoContainer extends Component{
   }
 
 
-  renderPostForm = (post) =>{
-    return(<><PostForm/></>)
-  }
+  // renderPostForm = (post) =>{
+  //   return(<><PostForm/></>)
+  // }
 
 
     render(){
@@ -56,18 +56,13 @@ class PosteesInfoContainer extends Component{
               <p className="card-header-title">
                 ${this.props.clickedPost.price}
               </p>
-              {/* <a href="#" className="card-header-icon" aria-label="more options">
-                <span className="icon">
-                  <i className="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a> */}
             </header>
             <div className="card-content">
               <div className="content">
                 <p>
                   {this.props.clickedPost.description}
                 </p>
-                <a href="#">@{this.props.clickedPost.user.username}</a>
+                <a >@{this.props.clickedPost.user.username}</a>
                 <br></br>
               </div>
             </div>
@@ -80,6 +75,8 @@ class PosteesInfoContainer extends Component{
             }
 }
 
+
+
   const mapStateToProps = (state)=> {
     return {user: state.user,
     post: state.post}
@@ -89,3 +86,7 @@ class PosteesInfoContainer extends Component{
     mapStateToProps,
     null,
   )(PosteesInfoContainer);
+
+
+
+ //if the post is the clicked post && switch === true 

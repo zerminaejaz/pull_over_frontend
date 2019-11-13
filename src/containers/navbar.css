@@ -1,5 +1,16 @@
-/* #profile{
-    height: "20px";
-    width: "20px";
-    border-radius: 100px;
-} */
+nav {
+    margin: 0 0 0 0;
+    font-family: Arial;
+    font-size: 100%;
+    width: 100%;
+    overflow: hidden;
+    position:fixed
+ }
+
+ nav ul{
+    list-style: none;
+ }
+ nav ul li {
+    float: left;
+    width: 20%;
+ }

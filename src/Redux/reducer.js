@@ -1,7 +1,8 @@
-export default (state={}, { type, payload }) => {
+export default (state={pageToRender: "HomeContainer"}, { type, payload }) => {
     switch (type) {
       case 'SET_USER':
         return {
+          ...state,
           user: payload
         }
       case 'CLEAR_USER':
@@ -41,7 +42,11 @@ export default (state={}, { type, payload }) => {
           ...state,
           post: payload
         }
-
+      case "PAGE_TO_RENDER":
+        return {
+          ...state,
+          pageToRender: payload
+        }
       case "SWITCH_FORM_ON":
         return {
           ...state,

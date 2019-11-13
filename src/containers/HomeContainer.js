@@ -11,7 +11,7 @@ class HomeContainer extends Component{
   
   state = {
     viewport: {
-      width: "100vw",
+      width: "90vw",
       height: "50vh",
       latitude: 40.700819,
       longitude: -73.987667,
@@ -140,12 +140,10 @@ class HomeContainer extends Component{
   }
 
     render(){
-     
         return(
-            <>
-
-            <div className="columns is-mobile is-centered has-text-centered">
-              <div className="column">
+            <div height="60vh">
+            <div className="columns is-mobile is-centered has-text-centered" >
+              <div className="column has-text-centered is-centered">
               {<ReactMapGL
                 {...this.state.viewport} onViewportChange={this.setView} 
                 mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
@@ -158,6 +156,7 @@ class HomeContainer extends Component{
                   }
               </ReactMapGL>}
               </div>
+         
             </div>
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
@@ -165,14 +164,14 @@ class HomeContainer extends Component{
               </div>
             </div>
 
-            <div className = "columns is-mobile is-centered has-text-centered">
+            <div className = "columns is-mobile is-centered has-text-centered" >
               <div className = "column">
                 {this.state.formSwitch ? this.renderForm() : this.state.clickedPost ? 
                 <PosteesInfoContainer key={this.state.clickedPost} editFormSwitch={this.editFormSwitch} clickedPost={this.state.clickedPost} deletePost={this.deletePost}/> : null}
               {this.state.editFormSwitch? this.renderEditForm():null}
               </div>
             </div>
-            </>
+            </div>
         )
     }
 }

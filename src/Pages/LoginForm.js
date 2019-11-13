@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Actions from '../Redux/actions';
 import { connect } from 'react-redux';
+import "./login.css"
 
 class LoginForm extends Component {
 
@@ -26,49 +27,48 @@ class LoginForm extends Component {
   }
 
   render() {
-    return (<>
-      <div className="columns is-vcentered is-centered is-mobile">
-      <div className="login column is-6 ">
-        <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="city"/>
+    return (<> <div className="columns is-vcentered is-centered is-mobile">
+    <div className="login column is-6 ">
+      <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="city"/>
+    </div>
+    <div className="login columns is-centered">
+    <section className="section">
+      <div className="has-text-centered">
+          <img className="login-logo" src="https://png.pngtree.com/svg/20161210/p_970543.png" alt="sticker"/>
       </div>
-      <div className="login columns is-centered">
-      <section className="section">
-        <div className="has-text-centered">
-            <img className="login-logo" src="https://png.pngtree.com/svg/20161210/p_970543.png" alt="sticker"/>
-        </div>
 
-        <div className="field">
-          <label className="label">Username</label>
-          <div className="control has-icons-right">
-            <input className="input" type="text"value={this.state.username}
-            name="username"
-            onChange={this.handleChange}/>
-            <span className="icon is-small is-right">
-              <i className="fa fa-user"></i>
-            </span>
-          </div>
+      <div className="field">
+        <label className="label">Username</label>
+        <div className="control has-icons-right">
+          <input className="input" type="text"value={this.state.username}
+          name="username"
+          onChange={this.handleChange}/>
+          <span className="icon is-small is-right">
+            <i className="fa fa-user"></i>
+          </span>
         </div>
-        <div className="field">
-          <label className="label">Password</label>
-          <div className="control has-icons-right">
-            <input className="input" type="password" value={this.state.password}
-            name="password"
-            onChange={this.handleChange}/>
-            <span className="icon is-small is-right">
-              <i className="fa fa-key"></i>
-            </span>
-          </div>
-        </div>
-        <div className="has-text-centered">
-          <button onClick={e => this.handleLogInUserToDb(e, this.state)}className="button is-vcentered is-primary is-outlined ">Login</button>
-        </div>
-        <div className="has-text-centered">
-          <br></br>
-          <a className="is-primary" onClick={this.handleSwitch}> Don't you have an account? Sign up now!</a>
-        </div>
-      </section>
       </div>
+      <div className="field">
+        <label className="label">Password</label>
+        <div className="control has-icons-right">
+          <input className="input" type="password" value={this.state.password}
+          name="password"
+          onChange={this.handleChange}/>
+          <span className="icon is-small is-right">
+            <i className="fa fa-key"></i>
+          </span>
+        </div>
       </div>
+      <div className="has-text-centered">
+        <button onClick={e => this.handleLogInUserToDb(e, this.state)}className="button is-vcentered is-link is-outlined ">Login</button>
+      </div>
+      <div className="has-text-centered">
+        <br></br>
+        <a className="is-primary" onClick={this.handleSwitch}> Don't you have an account? Sign up now!</a>
+      </div>
+    </section>
+    </div>
+    </div>
     </>
     )
   }
