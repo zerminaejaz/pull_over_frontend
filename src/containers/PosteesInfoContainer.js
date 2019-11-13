@@ -63,7 +63,7 @@ class PosteesInfoContainer extends Component{
                 <p>
                   {this.props.clickedPost.description}
                 </p>
-                <a onClick={()=>this.changePageToUserProfile(this.props.clickedPost.user,"UserProfile")}>@{this.props.clickedPost.user.username}</a>
+                <a onClick={()=>this.changePageToUserProfile(this.props.clickedPost.user,"UserProfile")}><i class="far fa-address-card"></i> @{this.props.clickedPost.user.username}</a>
                 <br></br>
               </div>
             </div>

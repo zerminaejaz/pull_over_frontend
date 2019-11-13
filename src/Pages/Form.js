@@ -6,9 +6,11 @@ class Form extends Component {
   state = {
     username: "",
     picture: "",
+    password: "",
     number:"",
-    password: ""
-  };
+    first_name: "",
+    last_name: ""
+  }
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
@@ -34,6 +36,24 @@ class Form extends Component {
 <section className="section">
   <div className="has-text-centered">
       <h1>Sign Up</h1>
+  </div>
+
+  <div className="field">
+    <label className="label">First Name</label>
+    <div className="control has-icons-right">
+      <input className="input" type="text" value={this.state.first_name}
+            name="first_name"
+            onChange={this.handleChange}/>
+    </div>
+  </div>
+
+  <div className="field">
+    <label className="label">Last Name</label>
+    <div className="control has-icons-right">
+      <input className="input" type="text"value={this.state.last_name}
+            name="last_name"
+            onChange={this.handleChange}/>
+    </div>
   </div>
 
   <div className="field">
@@ -73,6 +93,8 @@ class Form extends Component {
             onChange={this.handleChange}/>
     </div>
   </div>
+
+  
 
   <div className="has-text-centered">
     <a onClick={e => this.handleSubmit(e, this.state)}className="button is-vcentered is-primary is-outlined ">Sign Up</a>

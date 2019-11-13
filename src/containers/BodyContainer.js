@@ -17,7 +17,7 @@ class BodyContainer extends Component{
       return (<MyPostsContainer/>)
     else if(this.props.pageToRender === "MyReviewsContainer")
       return(<MyReviewsContainer/>)
-    else if(this.props.pageToRender === "MyReviewsContainer")
+    else if(this.props.pageToRender === "Profile")
       return(<Profile/>)
     else if(this.props.pageToRender === "UserProfile")
       return(<UserProfile/>)

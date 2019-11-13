@@ -47,11 +47,6 @@ class HomeContainer extends Component{
     }
   }
 
-  closePopup = () => {
-    console.log("CLose Pop")
-    return this.props.clearPost()
-  }
-
   createPost = () => {
    this.setState({
      formSwitch: true,
@@ -63,13 +58,11 @@ class HomeContainer extends Component{
   deletePost = (post) => {
     let newArray = this.props.posts.filter(postObj => postObj.id !== post.id) //squiggly brackets you have to return
     this.setState({
-      // posts: newArray,
       clickedPost: null,
       editFormSwitch: false
     })
     this.props.deletePost(post, newArray)
-      //tuesday
-    // this.props.deletePost(post)
+
   }
 
   editFormSwitch = () => {
@@ -84,6 +77,12 @@ class HomeContainer extends Component{
     })
   }
 
+  clearClickedPost = () => {
+    this.setState({
+      clickedPost: null
+    })
+  }
+
   
   handleMarkerClick = (post) => {
     this.setState({
@@ -95,9 +94,11 @@ class HomeContainer extends Component{
   }
 
   updatePostInState = (post) => {
-    this.setState({
-      clickedPost: post
-    })
+    if(post.status !== "COMPLETED"){
+      this.setState({
+        clickedPost: post
+      })
+    }
     this.editFormSwitch()
   }
 
@@ -110,16 +111,11 @@ class HomeContainer extends Component{
 
   renderEditForm = () => {
     return(
-      <EditForm post = {this.state.clickedPost} updatePostInState={this.updatePostInState} editFormSwitch={this.editFormSwitch} user={this.props.user} />
+      <EditForm post = {this.state.clickedPost} clearClickedPost = {this.clearClickedPost} updatePostInState={this.updatePostInState} editFormSwitch={this.editFormSwitch} user={this.props.user} />
     )
   }
 
   renderForm = () => {
-    let location = {
-      latitude: this.state.latitude,
-      longitude: this.state.longitude
-    }
-
     return(<><PostForm latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} formSwitch={this.formSwitch} setPosts = {this.setPosts} /></>)
   }
 
@@ -149,7 +145,7 @@ class HomeContainer extends Component{
                 mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
                   {this.props.posts && this.props.posts.length > 0?
                     this.props.posts.map(post => {
-                      if(post.latitude && post.longitude)
+                      if(post.latitude && post.longitude && (post.status === "PENDING" || post.status === "OPEN"))
                         return this.renderMarker(post)
                     })
                     : null

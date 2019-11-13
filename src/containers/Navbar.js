@@ -27,14 +27,14 @@ class Navbar extends Component{
             </div>
             <div id="navbarBasicExample" className="navbar-menu">
               <div className="navbar-start">
-                <a onClick={()=>this.changePageTo("Profile")} className="navbar-item">
-                  {this.props.user.username}
+                <a onClick={()=>this.changePageTo("HomeContainer")} className="navbar-item"><i class="fa fa-fw fa-home"></i>
+                  {/* {this.props.user.username} */}
                 </a>
                 <a onClick={()=>this.changePageTo("MyReviewsContainer")}className="navbar-item">
                   Reviews
                 </a>
                 <a onClick={()=>this.changePageTo("MyPostsContainer")} className="navbar-item">
-                  My Posts
+                  Posts
                 </a>
               </div>
               <div className="navbar-end">
