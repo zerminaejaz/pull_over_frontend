@@ -31,9 +31,13 @@ class EditForm extends Component{
 
   handleSubmit = (event) => {
     event.preventDefault()
+    if(this.state.status === "COMPLETED"){
+      this.props.clearClickedPost()
+    }
     this.props.updatePost(this.props.post,this.state)
-    this.props.getPosts()
-    this.props.updatePostInState(this.state) //get the post id
+    // this.props.getPosts()
+    this.props.updatePostInState({...this.state, id: this.props.post.id}) //get the post id
+  
   }
 
   setLocationInState = () => { 

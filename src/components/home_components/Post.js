@@ -45,10 +45,7 @@ class Post extends Component{
                 <p>${this.props.post.price}</p>
                 <p>{this.props.post.case}</p>
                 <p>{this.props.post.description}</p>
-          
-                {/* <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a> */}
                 <br/>
-                {/* <time datetime="2016-1-1">{this.timePassed(this.props.post.created_at)}</time> */}
               </div>
             </div>
             <footer class="card-footer">
@@ -57,7 +54,6 @@ class Post extends Component{
               <a href="#" class="card-footer-item">Delete</a>
             </footer>
           </div>
-
       </>)
     }
 

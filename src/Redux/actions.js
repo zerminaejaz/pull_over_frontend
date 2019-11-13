@@ -95,7 +95,6 @@ const getPosts = () => dispatch => {
     })
       .then(r => r.json())
       .then(postsArray => {
-        console.log(postsArray)
         dispatch(holdPosts(postsArray));
       })     
   }
@@ -126,8 +125,8 @@ const getPosts = () => dispatch => {
       .then(r => r.json())
       .then(data => {
         // console.log(data)
-        localStorage.token = data.token;
-        dispatch(setUserAction(data.user));
+        localStorage.token = data.token
+        dispatch(setUserAction(data.user))
       });
 
   };
@@ -162,10 +161,9 @@ const getPosts = () => dispatch => {
       body: JSON.stringify(post)
     }).then(res => res.json())
     .then(post=>{
-     
-      dispatch(sendPost(post))})
-   
-
+      dispatch(sendPost(post))
+      dispatch(getPosts())
+    })
   }
 
   const deletePost = (post, array) => dispatch => {
@@ -188,7 +186,8 @@ const getPosts = () => dispatch => {
     fetch(`http://localhost:3000/posts/${post.id}`, config)
       .then(r => r.json())
       .then(post => {
-        dispatch(updatePostAction(post));
+        dispatch(updatePostAction(post))
+        dispatch(getPosts())
       });
   };
   

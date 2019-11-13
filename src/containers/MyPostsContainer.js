@@ -5,17 +5,33 @@ import Post from '../components/home_components/Post';
 
 class MyPostsContainer extends Component{
 
-    sortPosts = () => {
+    showPosts = () => {
         let sortedArray = this.props.user.posts.sort((a, b) => b.created_at - a.created_at)
-        return sortedArray
+        return sortedArray.map(post=> {
+            return( <Post key={post.id} post={post}/>)
+            })    
+    }
+
+    showEmptyPosts = () => {
+        return(
+        <div>
+            <article class="message is-info">
+            <div class="message-header">
+                <p>No Posts</p>
+            </div>
+            <div class="message-body">
+                You have <strong>no posts</strong> to display. Create a post to view your posts
+            </div>
+            </article>
+        </div>
+        )
     }
   
     render(){
         return(<>
-        {this.sortPosts().map(post=> {
-            return( <Post key={post.id} post={post}/>)
-            })    
-        } 
+        {this.props.user.posts && this.props.user.posts.length > 0? this.showPosts():this.showEmptyPosts()} 
+        
+        
         </>
         )
     }
