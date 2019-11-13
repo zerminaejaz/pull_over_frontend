@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Actions from '../../Redux/actions';
 
 class UserProfile extends Component{
-
   render(){
    return(
    <div height="100px" width="100px">
