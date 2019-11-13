@@ -5,13 +5,20 @@ export default (state={pageToRender: "HomeContainer"}, { type, payload }) => {
           ...state,
           user: payload
         }
-      case 'CLEAR_USER':
+      case 'CLEAR_USER':{
         return {
         }
+      }
       case "SET_USER_LOCATION":{
         return{
           ...state,
           location: payload
+        }
+      }
+      case "SET_CLICKED_USER":{
+        return{
+          ...state,
+          clickedUser: payload
         }
       }
       case "CLEAR_POST":

@@ -38,6 +38,13 @@ const changePageTo = (pageName) => (
   }
 )
 
+const setClickedUser = (user) => (
+  {
+    type: "SET_CLICKED_USER",
+    payload: user
+  }
+)
+
 const sendPost = post => dispatch => dispatch({
   type: "SEND_POST",
   payload: post
@@ -90,8 +97,7 @@ const getPosts = () => dispatch => {
       .then(postsArray => {
         console.log(postsArray)
         dispatch(holdPosts(postsArray));
-      });
-          
+      })     
   }
   
   const persistUserFromAPI = () => dispatch => {
@@ -191,6 +197,7 @@ const getPosts = () => dispatch => {
     loginUserToDB,
     createNewUserToDB,
     logoutUser,
+    setClickedUser,
     getPosts,
     createPost,
     sendPost,
