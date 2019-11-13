@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../Redux/actions';
+import Post from '../components/home_components/Post';
 
 class MyPostsContainer extends Component{
+
+    sortPosts = () => {
+        let sortedArray = this.props.user.posts.sort((a, b) => b.created_at - a.created_at)
+        return sortedArray
+    }
   
     render(){
-        return(<><p>My Posts</p></>
+        return(<>
+        {this.sortPosts().map(post=> {
+            return( <Post key={post.id} post={post}/>)
+            })    
+        } 
+        </>
         )
     }
 }

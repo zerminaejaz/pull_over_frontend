@@ -5,6 +5,7 @@ import HomeContainer from './HomeContainer'
 import Profile from '../components/home_components/Profile';
 import MyPostsContainer from './MyPostsContainer';
 import MyReviewsContainer from './MyReviewsContainer';
+import UserProfile from '../components/home_components/UserProfile';
 
 class BodyContainer extends Component{
 
@@ -18,6 +19,8 @@ class BodyContainer extends Component{
       return(<MyReviewsContainer/>)
     else if(this.props.pageToRender === "MyReviewsContainer")
       return(<Profile/>)
+    else if(this.props.pageToRender === "UserProfile")
+      return(<UserProfile/>)
     else  
       return(<HomeContainer/>)
   }

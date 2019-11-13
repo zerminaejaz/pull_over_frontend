@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class ReviewsContainer extends Component{
   
     render(){
-        return(<></>
+        return(<><h1>My Reviews</h1></>
         )
     }
 }

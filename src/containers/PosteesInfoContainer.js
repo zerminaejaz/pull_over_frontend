@@ -30,7 +30,7 @@ class PosteesInfoContainer extends Component{
     return(this.props.user.id === post.user.id? 
       <>
         <button onClick={()=>this.props.editFormSwitch()}  className="card-footer-item" style={{color:"orange"}}>Edit</button>
-        <button onClick={()=>this.handleDeletePost(post)}className="card-footer-item" style={{color:"red"}}>Delete</button>
+        <button onClick={()=>this.handleDeletePost(post)} className="card-footer-item" style={{color:"red"}}>Delete</button>
     </>
     :
     <>
@@ -39,11 +39,11 @@ class PosteesInfoContainer extends Component{
     )
   }
 
+  changePageToUserProfile = (clickedUser, pageName) => {
+    this.props.changePageTo("UserProfile")
+    this.props.setClickedUser(clickedUser)
 
-  // renderPostForm = (post) =>{
-  //   return(<><PostForm/></>)
-  // }
-
+  }
 
     render(){
         return(
@@ -59,10 +59,11 @@ class PosteesInfoContainer extends Component{
             </header>
             <div className="card-content">
               <div className="content">
+                <p>Case: {this.props.clickedPost.case}</p>
                 <p>
                   {this.props.clickedPost.description}
                 </p>
-                <a >@{this.props.clickedPost.user.username}</a>
+                <a onClick={()=>this.changePageToUserProfile(this.props.clickedPost.user,"UserProfile")}>@{this.props.clickedPost.user.username}</a>
                 <br></br>
               </div>
             </div>
@@ -76,6 +77,10 @@ class PosteesInfoContainer extends Component{
 }
 
 
+const mapDispatchToProps = {
+  changePageTo: Actions.changePageTo,
+  setClickedUser: Actions.setClickedUser
+}
 
   const mapStateToProps = (state)=> {
     return {user: state.user,
@@ -84,7 +89,7 @@ class PosteesInfoContainer extends Component{
   
   export default connect(
     mapStateToProps,
-    null,
+    mapDispatchToProps,
   )(PosteesInfoContainer);
 
 
