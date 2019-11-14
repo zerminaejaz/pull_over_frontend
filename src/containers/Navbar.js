@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../Redux/actions';
+import "./navbar.css"
 
 class Navbar extends Component{
 
@@ -13,7 +14,7 @@ class Navbar extends Component{
   }
     render(){
         return(<>
-            <nav className="navbar" role="navigation" aria-label="main navigation">
+            <nav className="navbar" role="navigation" aria-label="main navigation" style={{borderBottom: "6px solid #40A4F4"}}>
             <div className="navbar-brand">
             <a onClick={()=>this.changePageTo("Profile")}>
                 <img src={this.props.user.picture} width="112" height="28" style={{borderRadius:"100%", padding:"10px"}}/>
@@ -38,7 +39,7 @@ class Navbar extends Component{
               <div className="navbar-end">
                 <div className="navbar-item">
                   <div className="buttons">
-                    <a onClick={this.handleLogout} className="button is-link">
+                    <a onClick={this.handleLogout} className="button is-light is-rounded">
                       <strong>Log Out</strong>
                     </a>
                   </div>

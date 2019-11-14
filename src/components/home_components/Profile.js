@@ -34,7 +34,8 @@ class Profile extends Component{
     console.log("Profile")
    return(<>
  <div className="columns">
-      <div className="column is-one-third">   
+      <div className="column is-one-third">  
+          <button className="button is-danger">Delete Account</button>   
       </div>
       <div className="column is-one-third">   
         <div height="50px" width="50px">
@@ -64,7 +65,6 @@ class Profile extends Component{
       </div>
       <div className="column is-one-third"> 
         {this.state.editAccountSwitch? <EditAccountForm editAccountSwitch={this.editAccountSwitch}/>:null}
-        <button className="button is-danger">Delete Account</button>  
       </div>
    </div>
   </>

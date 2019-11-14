@@ -50,7 +50,7 @@ class EditAccountForm extends Component{
           </div>
 
           <div className="field">
-            <label className="number">Number [13335550000]</label>
+            <label className="">Number (ex.13335550000)</label>
             <div className="control">
               <input className="input" name="number" onChange={this.inputChanged} type="text" value={this.state.number}/>
             </div>
@@ -63,8 +63,8 @@ class EditAccountForm extends Component{
             </div>
           </div>
 
-          <div className="control is-centered">
-            <button type="submit" className="button is-primary">Submit</button>
+          <div className="control mobile is-centered has-text-centered">
+            <button type="submit" className="button is-primary is-rounded">Submit</button>
           </div>
         </form>
       </div>

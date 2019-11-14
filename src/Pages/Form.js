@@ -93,11 +93,8 @@ class Form extends Component {
             onChange={this.handleChange}/>
     </div>
   </div>
-
-  
-
-  <div className="has-text-centered">
-    <a onClick={e => this.handleSubmit(e, this.state)}className="button is-vcentered is-primary is-outlined ">Sign Up</a>
+  <div className="is-mobile is-centered has-text-centered">
+    <a onClick={e => this.handleSubmit(e, this.state)} className="button is-vcentered is-primary is-outlined ">Sign Up</a>
   </div>
   <div className="has-text-centered">
     <br></br>

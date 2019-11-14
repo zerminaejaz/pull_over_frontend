@@ -1,0 +1,9 @@
+.navbar-item{
+    background-color: #fff;
+    border-radius: 100% ;
+    color: #305891;
+    height: 32px;
+    line-height: 30px;width: 32px;
+    /* margin: 5px; */
+    padding: 60px
+}
