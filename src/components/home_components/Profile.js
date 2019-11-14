@@ -37,7 +37,7 @@ class Profile extends Component{
       <div className="column is-one-third">  
           <button className="button is-danger">Delete Account</button>   
       </div>
-      <div className="column is-one-third">   
+      <div className="column is-one-third" style={{padding:"8%"}}>   
         <div height="50px" width="50px">
               <div className="card">
               <div className="card-image">

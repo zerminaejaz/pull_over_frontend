@@ -28,7 +28,7 @@ class EditAccountForm extends Component{
 
     render(){
       return (<>
-      <div style={{padding: "50px"}}>
+      <div style={{padding: "10%"}}>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="username">Username</label>
           <div className="control">
@@ -64,7 +64,7 @@ class EditAccountForm extends Component{
           </div>
 
           <div className="control mobile is-centered has-text-centered">
-            <button type="submit" className="button is-primary is-rounded">Submit</button>
+            <button type="submit" className="button is-light is-rounded">Submit</button>
           </div>
         </form>
       </div>

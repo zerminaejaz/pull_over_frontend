@@ -12,7 +12,7 @@ class HomeContainer extends Component{
   state = {
     viewport: {
       width: "90vw",
-      height: "30vh",
+      height: "50vh",
       latitude: 40.700819,
       longitude: -73.987667,
       zoom: 15
@@ -147,8 +147,8 @@ class HomeContainer extends Component{
   }
 
     render(){
-        return(
-            <div height="60vh">
+        return(<>
+            {/* // <div height="60%" width="100%"> */}
             <div className="columns is-mobile is-centered has-text-centered" >
               <div className="column has-text-centered is-centered map">
               {<ReactMapGL
@@ -177,7 +177,7 @@ class HomeContainer extends Component{
               {this.state.editFormSwitch? this.renderEditForm():null}
               </div>
             </div>
-            </div>
+            </>
         )
     }
 }

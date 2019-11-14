@@ -28,7 +28,7 @@ class BodyContainer extends Component{
     render(){
         return(
             <>
-              <div className="columns" style={{marginLeft: "3%", marginTop: "2%"}}>
+              <div className="columns" style={{marginLeft: "3%", marginTop: "2%"}} height="80%">
                 <div className="column is-centered has-text-centered is-full">
                  {this.checkWhichPageToRender()}
                 </div>

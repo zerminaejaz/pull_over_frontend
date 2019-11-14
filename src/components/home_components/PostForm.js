@@ -62,8 +62,22 @@ class PostForm extends Component{
 
       return (<>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="price">Price</label>
+          
           <div className="control">
+          <div className="field">
+            <p><label className="status">Status</label>
+              </p>
+            <br></br>
+            <div className="select">
+              <select name="status" onChange={(event)=>this.inputChanged(event)}>
+                <option value="OPEN">OPEN</option>
+                <option value="PENDING">PENDING</option>
+                <option value="COMPLETED">COMPLETED</option>
+              </select>
+            </div>
+          </div>
+
+            <label htmlFor="price">Price</label>
             <input className="input" name="price" onChange={this.inputChanged} type="number" value={this.state.price}/>
           </div>
     
@@ -81,7 +95,7 @@ class PostForm extends Component{
             </div>
           </div>
         <br></br>
-          <div className="field">
+          {/* <div className="field">
             <p><label className="status">Status</label>
               </p>
             <br></br>
@@ -92,7 +106,8 @@ class PostForm extends Component{
                 <option value="COMPLETED">COMPLETED</option>
               </select>
             </div>
-          </div>
+          </div> */}
+          <br></br>
 
           <div className="control is-mobile is-centered has-text-centered">
             <button type="submit" className="button is-light is-rounded">Submit</button>
