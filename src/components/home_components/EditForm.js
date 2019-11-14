@@ -12,7 +12,7 @@ class EditForm extends Component{
     case: this.props.post.case,
     status: this.props.post.status,
     latitude: this.props.post.latitude,
-    longitude: this.props.post.longitude,
+    longitude: this.props.post.longitude
   }
 
 
@@ -64,6 +64,13 @@ class EditForm extends Component{
             <input className="input" name="price" onChange={this.inputChanged} type="number" value={this.state.price}/>
           </div>
     
+          {/* <div className="field">
+            <label className="case">Case</label>
+            <div className="control">
+              <input className="input" name="case" onChange={this.inputChanged} type="text" value={this.state.case}/>
+            </div>
+          </div> */}
+
           <div className="field">
             <label className="description">Description</label>
             <div className="control">
@@ -71,19 +78,39 @@ class EditForm extends Component{
             </div>
           </div>
 
-          <div className="field">
-            <label className="case">Case</label>
-            <div className="control">
-              <input className="input" name="case" onChange={this.inputChanged} type="text" value={this.state.case}/>
-            </div>
-          </div>
-
-          <div className="field">
+          {/* <div className="field">
             <label className="status">Status [open, pending, completed]</label>
             <div className="control">
               <input className="input" name="status" onChange={this.inputChanged} type="text" value={this.state.status}/>
             </div>
+          </div> */}
+
+          <div className="field">
+            <p><label className="status">Status</label>
+              </p>
+            <br></br>
+            <div className="select">
+              <select name="status" onChange={(event)=>this.inputChanged(event)}>
+                <option value="OPEN">OPEN</option>
+                <option value="PENDING">PENDING</option>
+                <option value="COMPLETED">COMPLETED</option>
+              </select>
+            </div>
           </div>
+
+          <div className="field">
+            <p><label className="case">Case</label>
+              </p>
+            <br></br>
+            <div className="select">
+              <select name="case" onChange={(event)=>this.inputChanged(event)}>
+                <option value="CAR">CAR</option>
+                <option value="POLICE">POLICE</option>
+                <option value="ETC">ETC</option>
+              </select>
+            </div>
+          </div>
+
 
           <div className="control is-centered">
             <button type="submit" className="button is-primary">Submit</button>

@@ -6,6 +6,11 @@ import Actions from '../Redux/actions';
 
 class PosteesInfoContainer extends Component{
 
+  state = {
+    showLocationLinkSwitch: false,
+    link: ""
+  }
+
 
   returnStyledStatus = (status) => {
     let formattedStatus = status.toUpperCase()
@@ -22,19 +27,38 @@ class PosteesInfoContainer extends Component{
   }
 
   handleDeletePost = (post) => {
-    this.props.deletePost(post)
+    let newArray = this.props.posts.filter(postObj=>postObj.id !== post.id)
+    debugger
+    this.props.deletePost(post, newArray)
   }
 
+  helpDriver = (post) => {
+    let url = `https://www.google.com/maps/search/?api=1&query=${post.latitude},${post.longitude}`
+    this.setState({
+      link: url
+    })
+    this.locationLinkSwitch()
+  }
+
+  locationLinkSwitch = () => {
+    this.setState({
+      showLocationLinkSwitch: !this.state.showLocationLinkSwitch
+    })
+  }
+
+
+
   givePermissions = (post) => {
-   
     return(this.props.user.id === post.user.id? 
       <>
-        <button onClick={()=>this.props.editFormSwitch()}  className="card-footer-item" style={{color:"orange"}}>Edit</button>
-        <button onClick={()=>this.handleDeletePost(post)} className="card-footer-item" style={{color:"red"}}>Delete</button>
+        <button onClick={()=>this.props.editFormSwitch()}  className="card-footer-item button" style={{color:"orange"}}>Edit</button>
+        <button onClick={()=>this.handleDeletePost(post)} className="card-footer-item button" style={{color:"red"}}>Delete</button>
     </>
     :
     <>
-        <button className="card-footer-item" style={{color:"green"}}>Help Driver</button>
+        {/* <button onClick={()=>this.helpDriver(post)} className="card-footer-item" style={{color:"green"}}>Help Driver</button> */}
+        {this.state.showLocationLinkSwitch? <button className="card-footer-item button"><a href={this.state.link} target="_blank" onClick={()=>this.locationLinkSwitch}>Open in Maps</a> </button>
+        :<button onClick={()=>this.helpDriver(post)} className="card-footer-item button" style={{color:"green"}}>Get Location</button>}
     </>
     )
   }
@@ -63,7 +87,8 @@ class PosteesInfoContainer extends Component{
                 <p>
                   {this.props.clickedPost.description}
                 </p>
-                <a onClick={()=>this.changePageToUserProfile(this.props.clickedPost.user,"UserProfile")}><i class="far fa-address-card"></i> @{this.props.clickedPost.user.username}</a>
+                <a onClick={()=>this.changePageToUserProfile(this.props.clickedPost.user,"UserProfile")}><i className="far fa-address-card"></i> <p>@{this.props.clickedPost.user.username}
+                  </p></a>
                 <br></br>
               </div>
             </div>
@@ -79,12 +104,15 @@ class PosteesInfoContainer extends Component{
 
 const mapDispatchToProps = {
   changePageTo: Actions.changePageTo,
-  setClickedUser: Actions.setClickedUser
+  setClickedUser: Actions.setClickedUser,
+  updatePost: Actions.updatePost,
+  deletePost: Actions.deletePost
 }
 
   const mapStateToProps = (state)=> {
     return {user: state.user,
-    post: state.post}
+      post: state.post,
+      posts: state.posts}
   }
   
   export default connect(

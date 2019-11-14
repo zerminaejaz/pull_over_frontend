@@ -10,7 +10,7 @@ class PostForm extends Component{
     price: 0,
     description: "",
     case: "",
-    status: "",
+    status: "OPEN",
     latitude: "",
     longitude: ""
   }
@@ -44,16 +44,11 @@ class PostForm extends Component{
   }
 
   inputChanged = (event) => {
-    if(event.target.name === "status"){
+   
       this.setState({
         [event.target.name]: event.target.value.toUpperCase()
       })
-    }
-    else{
-      this.setState({
-        [event.target.name]: event.target.value
-      })
-    }
+ 
   }
 
   handleSubmit = (event) => {
@@ -65,7 +60,6 @@ class PostForm extends Component{
 
     render(){
 
-      console.log("We are:", this.state.user_id)
       return (<>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="price">Price</label>
@@ -74,13 +68,6 @@ class PostForm extends Component{
           </div>
     
           <div className="field">
-            <label className="description">Description</label>
-            <div className="control">
-              <input className="input" name="description" onChange={this.inputChanged} type="text" value={this.state.description}/>
-            </div>
-          </div>
-
-          <div className="field">
             <label className="case">Case</label>
             <div className="control">
               <input className="input" name="case" onChange={this.inputChanged} type="text" value={this.state.case}/>
@@ -88,11 +75,32 @@ class PostForm extends Component{
           </div>
 
           <div className="field">
+            <label className="description">Description</label>
+            <div className="control">
+              <input className="input" name="description" onChange={this.inputChanged} type="text" value={this.state.description}/>
+            </div>
+          </div>
+        <br></br>
+          <div className="field">
+            <p><label className="status">Status</label>
+              </p>
+            <br></br>
+            <div className="select">
+              <select name="status" onChange={(event)=>this.inputChanged(event)}>
+                <option value="OPEN">OPEN</option>
+                <option value="PENDING">PENDING</option>
+                <option value="COMPLETED">COMPLETED</option>
+              </select>
+            </div>
+          </div>
+
+
+          {/* <div className="field">
             <label className="status">Status [OPEN, PENDING, COMPLETE]</label>
             <div className="control">
               <input className="input" name="status" onChange={this.inputChanged} type="text" value={this.state.status}/>
             </div>
-          </div>
+          </div> */}
 
           <div className="control is-centered">
             <button type="submit" className="button is-primary">Submit</button>

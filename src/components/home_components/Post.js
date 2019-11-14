@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../../Redux/actions';
+import EditForm from './EditForm';
 
 class Post extends Component{
+
+  // state = {
+  //   editFormSwitch: false,
+  //   clickedPost:null
+  // }
 
   returnStyledStatus = (status) => {
     let formattedStatus = status.toUpperCase()
@@ -28,7 +34,6 @@ class Post extends Component{
     return newDate
   }
 
-
     render(){
         return(<>
         <div class="card">
@@ -43,16 +48,11 @@ class Post extends Component{
             <div class="card-content">
               <div class="content">
                 <p>${this.props.post.price}</p>
-                <p>{this.props.post.case}</p>
+                <p>CASE: {this.props.post.case}</p>
                 <p>{this.props.post.description}</p>
                 <br/>
               </div>
             </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item">Save</a>
-              <a href="#" class="card-footer-item">Edit</a>
-              <a href="#" class="card-footer-item">Delete</a>
-            </footer>
           </div>
       </>)
     }

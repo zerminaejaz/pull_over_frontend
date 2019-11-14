@@ -12,7 +12,7 @@ class HomeContainer extends Component{
   state = {
     viewport: {
       width: "90vw",
-      height: "50vh",
+      height: "30vh",
       latitude: 40.700819,
       longitude: -73.987667,
       zoom: 15
@@ -20,7 +20,7 @@ class HomeContainer extends Component{
     clickedPost: null,
     formSwitch: false,
     editFormSwitch: false,
-    posts: []
+    // posts: []
   };
 
   //LifeCycles
@@ -119,6 +119,17 @@ class HomeContainer extends Component{
     return(<><PostForm latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude} formSwitch={this.formSwitch} setPosts = {this.setPosts} /></>)
   }
 
+  markerImageSelector = (post) => {
+    switch(post.case){
+      case "POLICE":
+        return "https://img.icons8.com/dusk/452/policeman-male.png"
+      case "CAR":
+        return "https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png"
+      default:
+        return "http://www.pngall.com/wp-content/uploads/2017/05/Alert-Download-PNG.png"
+    }
+  }
+
   renderMarker = (post) => {
       return(
         <Marker
@@ -126,7 +137,7 @@ class HomeContainer extends Component{
         latitude={parseFloat(post.latitude)}
         longitude={parseFloat(post.longitude)}
       >
-          <img onClick={()=> this.handleMarkerClick(post)} src="https://cdn4.iconfinder.com/data/icons/car-service-cartoon/512/g24933-512.png" height="50px" width="50px" alt="marker"></img>
+          <img onClick={()=> this.handleMarkerClick(post)} src={this.markerImageSelector(post)} height="50px" width="50px" alt="marker"></img>
       </Marker>
       )
   }
@@ -139,7 +150,7 @@ class HomeContainer extends Component{
         return(
             <div height="60vh">
             <div className="columns is-mobile is-centered has-text-centered" >
-              <div className="column has-text-centered is-centered">
+              <div className="column has-text-centered is-centered map">
               {<ReactMapGL
                 {...this.state.viewport} onViewportChange={this.setView} 
                 mapStyle="mapbox://styles/zerminaejaz/ck2ktos920sdj1cpevbj0izw3" mapboxApiAccessToken="pk.eyJ1IjoiemVybWluYWVqYXoiLCJhIjoiY2sya3FyamY1MDI0azNubXhkdmx5cWE1ayJ9.-DVnbN3fa15LLSBxYZBAGg">
@@ -152,7 +163,6 @@ class HomeContainer extends Component{
                   }
               </ReactMapGL>}
               </div>
-         
             </div>
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
