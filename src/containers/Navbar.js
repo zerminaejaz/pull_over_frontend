@@ -14,6 +14,7 @@ class Navbar extends Component{
   }
     render(){
         return(<>
+        <div style={{width:"100%"}}>
             <nav className="navbar" role="navigation" aria-label="main navigation" style={{borderBottom: "6px solid #40A4F4"}}>
             <div className="navbar-brand">
             <a onClick={()=>this.changePageTo("Profile")}>
@@ -36,9 +37,9 @@ class Navbar extends Component{
                 <a onClick={()=>this.changePageTo("MyPostsContainer")} className="navbar-item"><i className="fas fa-exclamation-triangle" title="my posts"></i>
                 </a>
               </div>
-              <div className="navbar-end">
-                <div className="navbar-item">
-                  <div className="buttons">
+              <div className="navbar-end ">
+                <div className="navbar-item-c ">
+                  <div className="buttons ">
                     <a onClick={this.handleLogout} className="button is-light is-rounded">
                       <strong>Log Out</strong>
                     </a>
@@ -47,6 +48,7 @@ class Navbar extends Component{
               </div>
             </div>
           </nav>
+          </div>
           </>
        )
     }

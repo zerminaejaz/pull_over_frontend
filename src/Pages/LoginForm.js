@@ -59,12 +59,15 @@ class LoginForm extends Component {
           </span>
         </div>
       </div>
+      <br></br>
       <div className="has-text-centered">
-        <button onClick={e => this.handleLogInUserToDb(e, this.state)}className="button is-vcentered is-link is-outlined ">Login</button>
+        {/* <button onClick={e => this.handleLogInUserToDb(e, this.state)}className="button is-vcentered is-link is-outlined ">Login</button> */}
+        <button  onClick={e => this.handleLogInUserToDb(e, this.state)} class="glow-on-hover" type="button">LOG IN</button>
       </div>
+
       <div className="has-text-centered">
         <br></br>
-        <a className="is-primary" onClick={this.handleSwitch}> Don't you have an account? Sign up now!</a>
+        <a className="is-primary" onClick={this.handleSwitch}> Already have an account? Sign up now!</a>
       </div>
     </section>
     </div>

@@ -20,10 +20,10 @@ class UserProfile extends Component{
       <div className="column is-one-third">   
       </div>
       <div className="column is-one-third">   
-        <div height="100px" width="100px">
+        <div height="100px" width="100px" style={{margin:"15%"}}>
               <div className="card">
               <div className="card-image">
-                  <figure className="image is-4by2">
+                  <figure className="image is-2by2">
                   <img src={this.props.clickedUser.picture} alt="profile image"/>
                   </figure>
               </div>

@@ -25,8 +25,10 @@ class App extends Component {
 
   showHomePage = () => {
     return(<>
+      <div style={{width:"100vw"}}>
             <Navbar/>
             <BodyContainer/>  
+      </div>
       </>
       )
   }
@@ -43,7 +45,11 @@ class App extends Component {
   render() {
     return (
       <>
-      {this.checkForUser()}
+      <div className="columns" width="100vw" height="100vh">
+        <div className="column">
+            {this.checkForUser()}
+        </div>
+      </div>
       </>
     );
   }
