@@ -166,7 +166,7 @@ class HomeContainer extends Component{
             </div>
             <div className="columns is-mobile is-centered has-text-centered">
               <div className="column">
-                  <button className="button is-link" onClick={this.createPost}>Create Post</button>
+                  <button className="button is-light is-rounded" onClick={this.createPost}>Create Post</button>
               </div>
             </div>
 

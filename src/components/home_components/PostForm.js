@@ -94,16 +94,8 @@ class PostForm extends Component{
             </div>
           </div>
 
-
-          {/* <div className="field">
-            <label className="status">Status [OPEN, PENDING, COMPLETE]</label>
-            <div className="control">
-              <input className="input" name="status" onChange={this.inputChanged} type="text" value={this.state.status}/>
-            </div>
-          </div> */}
-
-          <div className="control is-centered">
-            <button type="submit" className="button is-primary">Submit</button>
+          <div className="control is-mobile is-centered has-text-centered">
+            <button type="submit" className="button is-light is-rounded">Submit</button>
           </div>
       </form>
       </>
