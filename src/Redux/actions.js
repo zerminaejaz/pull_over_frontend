@@ -9,6 +9,11 @@ const clearUserAction = () => ({
   type: 'CLEAR_USER'
 });
 
+const updateUserAction = user => ({
+  type: "UPDATE_USER",
+  payload: user
+})
+
 const updatePostAction= (post) => ({
   type: 'UPDATE_POST',
   payload: post
@@ -175,7 +180,7 @@ const getPosts = () => dispatch => {
   }
 
   const updatePost = (post,newPostData) => dispatch => {
-    console.log("Before patch", post)
+    console.log("Before patch", newPostData)
     const config = {
       method: 'PATCH',
       headers: {
@@ -190,12 +195,28 @@ const getPosts = () => dispatch => {
         dispatch(getPosts())
       });
   };
+
+  const updateUser = (user,newUserData) => dispatch => {
+    const config = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUserData)
+    };
+    fetch(`http://localhost:3000/users/${user.id}`, config)
+      .then(r => r.json())
+      .then(user => {
+        dispatch(updateUserAction(user))
+      });
+  };
   
   export default {
     persistUserFromAPI,
     loginUserToDB,
     createNewUserToDB,
     logoutUser,
+    updateUser,
     setClickedUser,
     getPosts,
     createPost,

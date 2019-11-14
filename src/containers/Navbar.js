@@ -18,23 +18,21 @@ class Navbar extends Component{
             <a onClick={()=>this.changePageTo("Profile")}>
                 <img src={this.props.user.picture} width="112" height="28" style={{borderRadius:"100%", padding:"10px"}}/>
             </a>
-           
+{/*            
               <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
               </a>
+               */}
             </div>
             <div id="navbarBasicExample" className="navbar-menu">
               <div className="navbar-start">
-                <a onClick={()=>this.changePageTo("HomeContainer")} className="navbar-item"><i class="fa fa-fw fa-home"></i>
-                  {/* {this.props.user.username} */}
+                <a onClick={()=>this.changePageTo("HomeContainer")} className="navbar-item"><i className="fa fa-fw fa-home" title="home"></i>
                 </a>
-                <a onClick={()=>this.changePageTo("MyReviewsContainer")}className="navbar-item">
-                  Reviews
+                <a onClick={()=>this.changePageTo("Profile")} className="navbar-item"><i className="fas fa-user" title="profile page"></i>
                 </a>
-                <a onClick={()=>this.changePageTo("MyPostsContainer")} className="navbar-item">
-                  Posts
+                <a onClick={()=>this.changePageTo("MyPostsContainer")} className="navbar-item"><i className="fas fa-exclamation-triangle" title="my posts"></i>
                 </a>
               </div>
               <div className="navbar-end">
@@ -47,7 +45,8 @@ class Navbar extends Component{
                 </div>
               </div>
             </div>
-          </nav></>
+          </nav>
+          </>
        )
     }
 }

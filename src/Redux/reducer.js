@@ -9,6 +9,13 @@ export default (state={pageToRender: "HomeContainer"}, { type, payload }) => {
         return {
         }
       }
+
+      case 'UPDATE_USER':{
+        return {
+          ...state,
+          user: payload
+        }
+      }
       case "SET_USER_LOCATION":{
         return{
           ...state,
@@ -27,6 +34,7 @@ export default (state={pageToRender: "HomeContainer"}, { type, payload }) => {
           post: null
           }
       case "DELETE_POST":
+        debugger
         return {
           ...state, 
           posts: payload,
