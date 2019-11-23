@@ -17,22 +17,35 @@ and generate a specific Google Map search query
 npm install && npm start
 ```
 
-## Usage
-
-```javascript
-
-```
-
 ## Tech/Frameworks Used
 - [Mapbox-GL-JS](https://docs.mapbox.com/mapbox-gl-js/api/)
 - [GeolocationAPI](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
-- [Bulma] CSS Framework(https://bulma.io/)
+- [Bulma-CSS-framework](https://bulma.io/)
 
+## Screenshots
 
+Login / Sign Up
+
+![Login / Sign Up](./public/pull_over_login.gif)
+
+Home Page, Create Post, Edit Post, Delete Post
+
+![Home Page & Create Post](./public/create_post.gif)
+
+View Posts, Users, Post Location
+
+![View Posts, Users, Post Location](./public/view_posts.gif)
+
+Account Page
+
+![Account Page](./public/profile_page.gif)
+
+User's Post History
+
+![Post History](./public/user_posts.gif)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## License

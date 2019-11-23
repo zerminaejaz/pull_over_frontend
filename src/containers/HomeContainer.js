@@ -49,7 +49,7 @@ class HomeContainer extends Component{
 
   createPost = () => {
    this.setState({
-     formSwitch: true,
+     formSwitch: !this.state.formSwitch,
      editFormSwitch:false,
      clickedPost:null
    })
