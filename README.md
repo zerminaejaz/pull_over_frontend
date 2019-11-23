@@ -22,25 +22,25 @@ npm install && npm start
 - [GeolocationAPI](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 - [Bulma-CSS-framework](https://bulma.io/)
 
-## Screenshots
+# Screenshots
 
-#### Login / Sign Up
+## Login / Sign Up
 
 ![Login / Sign Up](./public/pull_over_login.gif)
 
-#### Home Page, Create Post, Edit Post, Delete Post
+## Home Page, Create Post, Edit Post, Delete Post
 
 ![Home Page & Create Post](./public/create_post.gif)
 
-#### View Posts, Users, Post Location
+## View Posts, Users, Post Location
 
 ![View Posts, Users, Post Location](./public/view_posts.gif)
 
-#### Account Page
+## Account Page
 
 ![Account Page](./public/profile_page.gif)
 
-#### User's Post History
+## User's Post History
 
 ![Post History](./public/user_posts.gif)
 
