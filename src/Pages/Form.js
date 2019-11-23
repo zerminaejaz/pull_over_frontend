@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Actions from '../Redux/actions';
+import "./login.css"
 
 class Form extends Component {
   state = {
@@ -28,7 +29,7 @@ class Form extends Component {
 
   render() {
     return (
-      <div className="columns is-vcentered is-centered is-mobile">
+      <div className="columns is-vcentered is-centered is-mobile animated fadeInDown">
 <div className="login column is-4 ">
   <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="highway"/>
 </div>
@@ -94,7 +95,7 @@ class Form extends Component {
     </div>
   </div>
   <div className="is-mobile is-centered has-text-centered">
-    <a onClick={e => this.handleSubmit(e, this.state)} className="button is-vcentered is-primary is-outlined ">Sign Up</a>
+    <button onClick={e => this.handleSubmit(e, this.state)} className="button glow-on-hover" type="button">Sign Up</button>
   </div>
   <div className="has-text-centered">
     <br></br>

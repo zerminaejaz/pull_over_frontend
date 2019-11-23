@@ -31,7 +31,7 @@ class LoginForm extends Component {
     <div className="login column is-6 ">
       <img src="https://images.unsplash.com/photo-1495430288918-03be19c7c485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80" alt="city"/>
     </div>
-    <div className="login columns is-centered">
+    <div className="login columns is-centered animated fadeInDown">
     <section className="section">
       <div className="has-text-centered">
           <img className="login-logo" src="https://png.pngtree.com/svg/20161210/p_970543.png" alt="sticker" width="200px" height="200px"/>

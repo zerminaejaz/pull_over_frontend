@@ -25,7 +25,7 @@ class App extends Component {
 
   showHomePage = () => {
     return(<>
-      <div style={{width:"100vw"}}>
+      <div style={{width:"100vw"}} is-mobile>
             <Navbar/>
             <BodyContainer/>  
       </div>
