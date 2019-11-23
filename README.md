@@ -2,8 +2,8 @@
 
 Pull Over is an application where Users can post on-the-road problems with or without an amount of cash they can offer for task completion. Users can view posts nearby and retrieve location of each post via Google Maps.
 
-- Utilized Ruby on Rails to rapidly develop and deploy application using MVC framework
-    - Here is the [Rails-Backend](https://github.com/zerminaejaz/pull_over_backend)
+## Front-end
+
 - Used JWT authorization to secure a single flow of data and helped verify the user by checking request signatures
 - Utilized React MapBox GL with Geolocation API to render an interactive map for users to visualize what posts are nearby
 and generate a specific Google Map search query
@@ -11,16 +11,25 @@ and generate a specific Google Map search query
 - Utilized Redux to create a single source of truth while handling multiple concurrent forms for submission.
 - Designed the User Interface with Bulma CSS Framework and Javascript to create a modern, smooth UI
 
+## Back-end
+
+- Utilized Ruby on Rails to rapidly develop and deploy application using MVC framework
+- [Rails-Backend](https://github.com/zerminaejaz/pull_over_backend)
+
 ## Installation
 
 ```
 npm install && npm start
 ```
 
-## Tech/Frameworks Used
+## Technologies/Frameworks Used
 - [Mapbox-GL-JS](https://docs.mapbox.com/mapbox-gl-js/api/)
 - [GeolocationAPI](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 - [Bulma-CSS-framework](https://bulma.io/)
+
+- React
+- React-Redux
+- Redux-Thunk
 
 # Screenshots
 
