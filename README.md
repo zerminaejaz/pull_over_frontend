@@ -1,6 +1,6 @@
 # Roadside Assistance - "Pull Over"
 
-Pull Over is an application where Users post problems they are having on the road for nearby users to assist them.
+Pull Over is an application where Users can post on-the-road problems with or without an amount of cash they can offer for task completion. Users can view posts nearby and retrieve location of each post via Google Maps.
 
 - Utilized Ruby on Rails to rapidly develop and deploy application using MVC framework
     - Here is the [Rails-Backend](https://github.com/zerminaejaz/pull_over_backend)
@@ -24,23 +24,23 @@ npm install && npm start
 
 ## Screenshots
 
-Login / Sign Up
+#### Login / Sign Up
 
 ![Login / Sign Up](./public/pull_over_login.gif)
 
-Home Page, Create Post, Edit Post, Delete Post
+#### Home Page, Create Post, Edit Post, Delete Post
 
 ![Home Page & Create Post](./public/create_post.gif)
 
-View Posts, Users, Post Location
+#### View Posts, Users, Post Location
 
 ![View Posts, Users, Post Location](./public/view_posts.gif)
 
-Account Page
+#### Account Page
 
 ![Account Page](./public/profile_page.gif)
 
-User's Post History
+#### User's Post History
 
 ![Post History](./public/user_posts.gif)
 
