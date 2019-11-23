@@ -2,6 +2,7 @@
 
 Pull Over is an application where Users post problems they are having on the road for nearby users to assist them.
 
+
 - Utilized Ruby on Rails to rapidly develop and deploy application using MVC framework
 - Used JWT authorization to secure a single flow of data and helped verify the user by checking request signatures
 - Utilized React MapBox GL with Geolocation API to render an interactive map for users to visualize what posts are nearby
@@ -12,8 +13,8 @@ and generate a specific Google Map search query
 
 ## Installation
 
-
-```cd pull_over_frontend
+```
+cd pull_over_frontend
 npm install && npm start
 ```
 
@@ -23,10 +24,22 @@ npm install && npm start
 
 ```
 
+## Tech/Frameworks Used
+
+- [MapBox-GL](https://github.com/mapbox/mapbox-gl-js)
+- [Geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+- [Bulma](https://bulma.io/)
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+### Here are some issues that need to be resolved:
+
+- When signed in user creates a post, rerender is not forced
+- Add the ability for a user to delete their account
+
+### Desired features to add:
+
+- Add switch for user to decide whether to have their phone number visible to others or not
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
