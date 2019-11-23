@@ -20,7 +20,9 @@ class SignupOrLogIn extends Component {
 
     render(){
         return(<>
+        <div width="100%">
             {this.state.signUpSwitch ? <Form switchForm={this.switchForm}/>:<LoginForm switchForm={this.switchForm}/>}
+        </div>
         </>)
     }
     

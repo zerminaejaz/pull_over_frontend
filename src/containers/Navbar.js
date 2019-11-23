@@ -14,7 +14,7 @@ class Navbar extends Component{
   }
     render(){
         return(<>
-        <div style={{width:"100%"}}>
+        <div style={{width:"100%"}} is-mobile>
             <nav className="navbar" role="navigation" aria-label="main navigation" style={{borderBottom: "6px solid #40A4F4"}}>
             <div className="navbar-brand">
             <a onClick={()=>this.changePageTo("Profile")}>
