@@ -10,7 +10,6 @@ and generate a specific Google Map search query
 - Utilized Redux to create a single source of truth while handling multiple concurrent forms for submission.
 - Designed the User Interface with Bulma CSS Framework and Javascript to create a modern, smooth UI
 
-
 ## Installation
 
 
