@@ -9,7 +9,6 @@ import UserProfile from '../components/home_components/UserProfile';
 
 class BodyContainer extends Component{
 
-
   checkWhichPageToRender = () => {
     if(this.props.pageToRender === "HomeContainer")
       return(<HomeContainer/>)

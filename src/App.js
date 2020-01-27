@@ -19,7 +19,6 @@ class App extends Component {
   }
 
   handleLogOut = () => {
-    console.log("Clicked log out")
     this.props.logoutUser()
   }
 

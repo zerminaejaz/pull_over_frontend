@@ -16,7 +16,6 @@ class PostForm extends Component{
   }
 
   componentDidMount = () => {
-
     this.setState({
       latitude: this.props.latitude.toString(),
       longitude: this.props.longitude.toString(),
@@ -44,7 +43,6 @@ class PostForm extends Component{
   }
 
   inputChanged = (event) => {
-   
       this.setState({
         [event.target.name]: event.target.value.toUpperCase()
       })
@@ -57,9 +55,7 @@ class PostForm extends Component{
     this.props.createPost(this.state)
   }
 
-
     render(){
-
       return (<>
         <form onSubmit={this.handleSubmit}>
           
@@ -95,18 +91,6 @@ class PostForm extends Component{
             </div>
           </div>
         <br></br>
-          {/* <div className="field">
-            <p><label className="status">Status</label>
-              </p>
-            <br></br>
-            <div className="select">
-              <select name="status" onChange={(event)=>this.inputChanged(event)}>
-                <option value="OPEN">OPEN</option>
-                <option value="PENDING">PENDING</option>
-                <option value="COMPLETED">COMPLETED</option>
-              </select>
-            </div>
-          </div> */}
           <br></br>
 
           <div className="control is-mobile is-centered has-text-centered">

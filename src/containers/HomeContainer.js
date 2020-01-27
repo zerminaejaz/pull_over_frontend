@@ -20,10 +20,8 @@ class HomeContainer extends Component{
     clickedPost: null,
     formSwitch: false,
     editFormSwitch: false,
-    // posts: []
   };
 
-  //LifeCycles
   componentDidMount = () => {
     this.checkLocation()
     this.props.getPosts()
@@ -148,7 +146,6 @@ class HomeContainer extends Component{
 
     render(){
         return(<>
-            {/* // <div height="60%" width="100%"> */}
             <div className="columns is-mobile is-centered has-text-centered" >
               <div className="column has-text-centered is-centered map">
               {<ReactMapGL
